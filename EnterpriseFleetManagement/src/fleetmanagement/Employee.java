@@ -57,6 +57,42 @@ public class Employee {
 		return role;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
 	public void addEmployee() {
 		
 		try {

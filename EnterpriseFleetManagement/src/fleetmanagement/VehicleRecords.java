@@ -38,5 +38,21 @@ public class VehicleRecords {
 	public String getCurrPin() {
 		return currPin;
 	}
+
+	public double getMiles() {
+		return miles;
+	}
+
+	public double getMaintCost() {
+		return maintCost;
+	}
+
+	public double getFuelCost() {
+		return fuelCost;
+	}
+
+	public String getStatus() {
+		return status;
+	}
 	
 }

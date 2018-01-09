@@ -64,6 +64,18 @@ public class Vehicle {
 		return mileage;
 	}
 
+	public int getVehId() {
+		return vehId;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public String getService() {
+		return service;
+	}
+
 	public void addVehicle() {
 		
 		try {
