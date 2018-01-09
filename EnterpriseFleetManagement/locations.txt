@@ -1,0 +1,11 @@
+Mannheim,Almenhof;68199	
+Mannheim,Blumenau;68307	
+Mannheim,Fabrikstation;68163	
+Mannheim,Fahrlach;68165	
+Mannheim,Feudenheim;68259	
+Mannheim,Friedrichsfeld;68229	
+Mannheim,Friesenheimer Insel;68169	
+Mannheim,Gartenstadt;68305	
+Mannheim,Industriehafen;68169	
+Mannheim,Innenstadt;68161	
+Mannheim,Jungbusch;68159

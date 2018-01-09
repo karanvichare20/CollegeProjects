@@ -1,0 +1,24 @@
+Amish,Karovalia,ami_kar@gmail.com,pass123,017644704501,Ludwig Guttmann Strasse-2,Heidelberg,69123,external
+Martin,Gari,mrg@gmail.com,pass123,017644704502,Abend academy,Mannheim,69123,executive
+Biswaroop,Sahoo,bissah@gmail.com,pass123,017644704503,Ludwig Guttmann Strasse-2,Heidelberg,69123,manager
+Karan,Vichare,karvic@gmail.com,pass123,017644704504,Ludwig Guttmann Strasse-2,Heidelberg,69123,executive
+Pravin,Konade,p_kon@gmail.com,pass321,017644704505,Ludwig Guttmann Strasse-2,Heidelberg,69123,lead
+Vikas,Sharma,viksharma@hotmail.com,pass123,017644704506,Maria Prob. Strasse,Heidelberg,63223,senior
+Eldon,Kuz,elkuz@yahoo.com,pass132,017644704507,Meckeshheim-2,Heidelberg,69111,external
+Sachin,Mohorikar,sachmoh@gmail.com,pass111,017644704508,Hauptbahnhof-2 Zi. 111,Heidelberg,69123,junior
+Vijay,Dandekar,vij_dand@gmail.com,pass123,017644704509,Ludwigshafen Strasse,Heidelberg,69113,staff
+Frank,Walterscheidt,frank@gmail.com,pass123,017644704510,Ludwig Guttmann Strasse-3,Heidelberg,69123,staff
+Ajaya,Kuvalia,ajayku@gmail.com,pass123,017644704511,Ludwig Guttmann Strasse-2,Heidelberg,69123,staff
+Vijay,Tale,vtale@gmail.com,pass123,017644704512,Abend academy,Mannheim,69123,lead
+Gaurav,Tamhane,gautam@gmail.com,pass123,017644704513,Ludwig Guttmann Strasse-2,Heidelberg,69123,manager
+Rahul,Singh,rasi@gmail.com,pass123,017644704514,Ludwig Guttmann Strasse-2,Heidelberg,69123,senior
+Sanket,Mysore,sam@gmail.com,pass321,017644704515,Ludwig Guttmann Strasse-2,Heidelberg,69123,junior
+Omar,Sayed,omars@hotmail.com,pass123,017644704516,Maria Prob. Strasse,Heidelberg,63223,junior
+Suraj,Salunkhe,sal_sur@yahoo.com,pass132,017644704517,Meckeshheim-2,Heidelberg,69111,external
+Pritesh,Khamkar,kham_prit@gmail.com,pass111,017644704518,Hauptbahnhof-2 Zi. 111,Heidelberg,69123,manager
+Sanjay,Kadam,sanj_kad@gmail.com,pass123,017644704519,Ludwigshafen Strasse,Heidelberg,69113,junior
+Brijesh,Shetty,bshetty@gmail.com,pass123,017644704520,Ludwig Guttmann Strasse-3,Heidelberg,69123,lead
+Dharesh,Shah,dshah@gmail.com,pass123,01764471234,Fliedelstrasse-19,Heidelberg,69911,senior
+Darren,Brown,dbrown@gmail.com,pass123,017644766520,Fliedelstrasse-20,Heidelberg,69911,junior
+Ajinkya,Patil,aji_patil@gmail.com,pass123,017600704520,Marie Probt Strasse-3,Heidelberg,66623,junior
+Arron,Vogel,aronvogel@gmail.com,pass123,017647777720,Marie Probt Strasse-3,Heidelberg,69993,senior

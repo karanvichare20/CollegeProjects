@@ -1,0 +1,25 @@
+Auto Avio 815,Ferrari,DE 70 BR 782,2010,2,luxury,12.5
+Swift,Maruti,HR 25 DE 2345,2009,5,shared,17.00
+Polo,Volkswagen,DE 70 BR 722,2010,4,comfort,11.50
+F125 S,Ferrari,DE 25 DE 2325,2009,5,luxury,9.50
+Jetta,Volkswagen,DE 71 BR 782,2010,4,comfort,14.50
+Swift Dzire,Maruti,HR 25 DE 2305,2009,5,shared,15.00
+GTI,Volkswagen,DE 40 BR 772,2011,4,shared,13.00
+Touaereg,Volkswagen,DE 25 DF 2445,2009,5,shared,14.00
+Beetle,Volkswagen,DE 72 BR 782,2010,4,comfort,10.00
+3200,BMW,HR 11 DE 2555,2009,5,comfort,8.00
+New Class,BMW,DE 70 HD 732,2010,4,luxury,12.50
+I8,BMW,DE 17 HD 2345,2009,5,luxury,8.00
+Baleno,Maruti,DE 76 CN 782,2010,4,shared,15.00
+3 Series,BMW,HR 25 DE 2115,2009,5,luxury,9.00
+Ignis,Suzuki,DE 10 BR 782,2010,4,shared,15,00
+Celerio,Maruti,DE 77 KR 2345,2009,5,shared,15.00
+Vitara,Suzuki,DE 55 BR 782,2010,4,shared,15.00
+SX4,Maruti,DE 44 HD 2385,2009,5,shared,15.00
+Jimmy,Maruti,DE 74 BR 1782,2010,4,shared,15.00
+Avalance,Chevrolet,DE 88 DE 1145,2009,5,truck,3.00
+LP 909,Tata,DE 11 HD 1665,2009,35,bus,5.00
+LP 407,Tata,DE 12 HD 1665,2009,35,bus,4.00
+LP 408,Tata,DE 13 HD 1665,2009,35,bus,5.00
+Avalance,Nercedes,HR 88 DE 1335,2010,5,truck,4.00
+Avalance,Volvo,MN 88 FR 1121,2002,5,truck,5.00
