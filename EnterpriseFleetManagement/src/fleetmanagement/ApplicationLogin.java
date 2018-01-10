@@ -72,7 +72,7 @@ public class ApplicationLogin {
 	        	userId = reader.readLine();
 	        } */
 	        System.out.print("-----------------------------------------ADMIN LOGIN---------------------------------------------->");
-	        System.out.print("Enter Admin password: ");
+	        System.out.print("\nEnter Admin password: ");
 	        password = reader.readLine();
 	        while(!password.equals("root")) {
 	        	count++;
