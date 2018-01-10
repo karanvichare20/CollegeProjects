@@ -32,17 +32,19 @@ public class Employee {
 		
 		HashMap<String, String> result = EmployeeDB.queryDB(id);
 		
-		empId = Integer.parseInt(result.get("emp_id"));
-		firstName = result.get("fname");
-		lastName = result.get("lname");
-		email = result.get("email");
-		password = result.get("pass");
-		phone = result.get("phone");
-		street = result.get("street");
-		city = result.get("city");
-		pincode = result.get("pincode");
-		role = result.get("role");
-		status = result.get("status");
+		if(!result.isEmpty()) {
+			empId = Integer.parseInt(result.get("emp_id"));
+			firstName = result.get("fname");
+			lastName = result.get("lname");
+			email = result.get("email");
+			password = result.get("pass");
+			phone = result.get("phone");
+			street = result.get("street");
+			city = result.get("city");
+			pincode = result.get("pincode");
+			role = result.get("role");
+			status = result.get("status");
+		}
 		
 //		System.out.println(empId+"\t"+firstName+"\t"+lastName+"\t"+email+"\t"+password+"\t"
 //							+phone+"\t"+street+"\t"+city+"\t"+pincode+"\t"+role+"\t"+status);
@@ -92,6 +94,21 @@ public class Employee {
 	public String getStatus() {
 		return status;
 	}
+	
+	@Override
+	public String toString() {
+		return "Employee ID: "+empId+
+				"\nFirst name: "+firstName+
+				"\nLast name: "+lastName+
+				"\nEmail: "+email+
+				"\nPassword: "+password+
+				"\nPhone number: "+phone+
+				"\nAddress: "+street+
+				"\nCity: "+city+
+				"\nPincode: "+pincode+
+				"\nDesignation: "+role+
+				"\nStatus: "+status;
+	}
 
 	public void addEmployee() {
 		
@@ -131,14 +148,14 @@ public class Employee {
 					+firstName+"','"+lastName+"','"+email+"','"+password+"','"+phone+"','"+street+"','"+city+"','"+pincode+"','"+role+"');";
 	        
 	        empId = EmployeeDB.addEmployeeToDB(sql);
-	        System.out.println("Employee ID is: "+empId);
+	        System.out.println("New employee added successfully. Employee ID is: "+empId);
 	        
 		} catch (IOException ioe) {
 	        ioe.printStackTrace();
 	    }
 	}
 	
-	public void deactivateEmployee(int empId) {
+	public void deactivateEmployee() {
 		
 		boolean success = EmployeeDB.deactivateEmployeeInDB(empId);
 		System.out.println("Employee with ID "+empId+" de-activated successfully: "+success);

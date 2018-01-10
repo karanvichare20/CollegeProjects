@@ -22,12 +22,14 @@ public class VehicleRecords {
 		
 		HashMap<String, String> result = VehicleRecordsDB.queryDB(id);
 		
-		vehId = Integer.parseInt(result.get("veh_id"));
-		miles = Double.parseDouble(result.get("miles"));
-		maintCost = Double.parseDouble(result.get("maintenance_cost"));
-		fuelCost = Double.parseDouble(result.get("fuel_cost"));
-		status = result.get("status");
-		currPin = result.get("curr_pin");
+		if(!result.isEmpty()){
+			vehId = Integer.parseInt(result.get("veh_id"));
+			miles = Double.parseDouble(result.get("miles"));
+			maintCost = Double.parseDouble(result.get("maintenance_cost"));
+			fuelCost = Double.parseDouble(result.get("fuel_cost"));
+			status = result.get("status");
+			currPin = result.get("curr_pin");
+		}
 		
 	}
 
@@ -53,6 +55,15 @@ public class VehicleRecords {
 
 	public String getStatus() {
 		return status;
+	}
+	
+	@Override
+	public String toString() {
+		return "Distance travelled till date in KMs: "+miles+
+				"\nMaintenance cost till date: "+maintCost+
+				"\nFuel cost till date: "+fuelCost+
+				"\nBookin status: "+status+
+				"\nCurrent location pin: "+currPin;
 	}
 	
 }

@@ -51,15 +51,9 @@ public class VehicleDB {
 	
 	public static int addVehicleToDB(String sql) {
 		
-//		Connection conn = null;
-//		Statement stmt = null;
 		int vehId = 0;
 		
 		try {
-			
-//			Class.forName(JDBC_DRIVER);
-//			conn = DriverManager.getConnection(DB_URL,USER,PASS);
-//			stmt = conn.createStatement();
 			
 			getSQLConnection();
 			
@@ -76,9 +70,6 @@ public class VehicleDB {
 			rs.close();
 			
 			closeSQLConnection();
-//			stmt.close();
-//			conn.close();
-			
 			
 		}catch (SQLException se) {
 			se.printStackTrace();
@@ -93,19 +84,14 @@ public class VehicleDB {
 		
 		boolean success = false;
 		String sql = "UPDATE vehicle SET service = 'decommissioned' WHERE veh_id = " + vehId + ";";
-//		Connection conn = null;
-//		Statement stmt = null;
-		
+	
 		try {
-			
-//			Class.forName(JDBC_DRIVER);
-//			conn = DriverManager.getConnection(DB_URL,USER,PASS);
-//			stmt = conn.createStatement();
-			
+
 			getSQLConnection();
 			
 			int result = stmt.executeUpdate(sql);
 			if(result > 0) {
+				VehicleRecordsDB.updateColumnValueInDB(vehId, "status", "unavailable");
 				success = true;
 			}
 			

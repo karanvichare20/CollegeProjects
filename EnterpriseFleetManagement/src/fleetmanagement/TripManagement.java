@@ -52,24 +52,22 @@ public class TripManagement {
 		
 		HashMap<String, String> result = TripManagementDB.queryDB(id);
 		
-		tripId = Integer.parseInt(result.get("trip_id"));
-		vehId = Integer.parseInt(result.get("veh_id"));
-		empId = Integer.parseInt(result.get("emp_id"));
-		pickPin = result.get("pick_pin");
-		dropPin = result.get("drop_pin");
-		distance = Double.parseDouble(result.get("distance"));
-		fuelUsed = Double.parseDouble(result.get("fuel_used"));
-		tripCost = Double.parseDouble(result.get("trip_cost"));
-		bookTime = result.get("book_time");
-		tripStart = result.get("trip_start");
-		tripEnd = result.get("trip_end");
-		status = result.get("status");
+		if(!result.isEmpty()){
+			tripId = Integer.parseInt(result.get("trip_id"));
+			vehId = Integer.parseInt(result.get("veh_id"));
+			empId = Integer.parseInt(result.get("emp_id"));
+			pickPin = result.get("pick_pin");
+			dropPin = result.get("drop_pin");
+			distance = Double.parseDouble(result.get("distance"));
+			fuelUsed = Double.parseDouble(result.get("fuel_used"));
+			tripCost = Double.parseDouble(result.get("trip_cost"));
+			bookTime = result.get("book_time");
+			tripStart = result.get("trip_start");
+			tripEnd = result.get("trip_end");
+			status = result.get("status");
+		}
+		
 	}
-
-/*	public void prntTM() {
-		System.out.println(tripId+" | "+vehId+" | "+empId+" | "+pickPin+" | "+dropPin+" | "+distance+" | "+fuelUsed+" | "+tripCost+" | "+bookTime+" | "+tripStart+" | "+tripEnd+" | "+status);
-
-	}*/
 	
 	public int getTripId() {
 		return tripId;
@@ -145,6 +143,22 @@ public class TripManagement {
 		
 		return locList;
 		
+	}
+	
+	@Override
+	public String toString() {
+		return "Trip ID: "+tripId+
+				"\nVehicle ID: "+vehId+
+				"\nEmployee ID: "+empId+
+				"\nPickup location pincode: "+pickPin+
+				"\nDrop location pincode: "+dropPin+
+				"\nTrip distance in KMs: "+distance+
+				"\nFuel used in ltr: "+fuelUsed+
+				"\nTrip cost: "+tripCost+
+				"\nBooking time: "+bookTime+
+				"\nTrip start time: "+tripStart+
+				"\nTrip end time: "+tripEnd+
+				"\nTrip current status: "+status;
 	}
 	
 	public void displayLoc() {

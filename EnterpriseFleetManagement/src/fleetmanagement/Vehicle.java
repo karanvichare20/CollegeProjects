@@ -28,16 +28,17 @@ public class Vehicle {
 		
 		HashMap<String, String> result = VehicleDB.queryDB(id);
 		
-		vehId = Integer.parseInt(result.get("veh_id"));
-		model = result.get("model");
-		brand = result.get("brand");
-		regNo = result.get("reg_no");
-		year = Integer.parseInt(result.get("year"));
-		pax = Integer.parseInt(result.get("pax"));
-		category = result.get("category");
-		mileage = Double.parseDouble(result.get("mileage"));
-		service = result.get("service");
-		
+		if(!result.isEmpty()) {
+			vehId = Integer.parseInt(result.get("veh_id"));
+			model = result.get("model");
+			brand = result.get("brand");
+			regNo = result.get("reg_no");
+			year = Integer.parseInt(result.get("year"));
+			pax = Integer.parseInt(result.get("pax"));
+			category = result.get("category");
+			mileage = Double.parseDouble(result.get("mileage"));
+			service = result.get("service");
+		}	
 	}
 	
 	public String getModel() {
@@ -76,6 +77,19 @@ public class Vehicle {
 		return service;
 	}
 
+	@Override
+	public String toString() {
+		return "Vehicle ID: "+vehId+
+				"\nModel: "+model+
+				"\nBrand: "+brand+
+				"\nRegistration Number: "+regNo+
+				"\nYear of manufacture: "+year+
+				"\nCapacity: "+pax+
+				"\nCategory: "+category+
+				"\nMileage: "+mileage+
+				"\nService status: "+service;
+	}
+	
 	public void addVehicle() {
 		
 		try {
@@ -108,17 +122,17 @@ public class Vehicle {
 					+model+"','"+brand+"','"+regNo+"',"+year+","+pax+",'"+category+"',"+mileage+");";
 	        
 	        vehId = VehicleDB.addVehicleToDB(sql);
-	        System.out.println("Vehicle ID is: "+vehId);
+	        System.out.println("New vehicle added successfully. Vehicle ID is: "+vehId);
 	        
 		} catch (IOException ioe) {
 	        ioe.printStackTrace();
 	    }
 	}
 	
-	public void decommissionVehicle(int vehId) {
+	public void decommissionVehicle() {
 		
 		boolean success = VehicleDB.decommVehicleInDB(vehId);
-		System.out.println("Vehicle has been de-commissioned successfully :"+success);
+		System.out.println("Vehicle with ID "+vehId+" de-commissioned successfully :"+success);
 		
 	}
 

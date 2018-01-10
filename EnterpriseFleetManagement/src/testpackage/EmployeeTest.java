@@ -10,8 +10,8 @@ public class EmployeeTest {
 //		Employee emp = new Employee();
 //		emp.deactivateEmployee(11001);
 		
-		Employee emp = new Employee(11006);
-		
+		Employee emp = new Employee(110067);
+		System.out.println(emp);
 		
 	}
 

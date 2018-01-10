@@ -17,15 +17,15 @@ public class TripManagementTest {
 		// TODO Auto-generated method stub
 		 
 //		TripManagement trip = new TripManagement(11000030);
-		TripManagement trip = new TripManagement();
+		TripManagement trip = new TripManagement(11000011);
 /*		HashMap<String, String> locList = trip.getLocList();
 		for(Map.Entry<String, String> entry : locList.entrySet()) {
 			String key = entry.getKey();
 		    String value = entry.getValue();
 		    System.out.println(key+"-"+value);
 		}*/
-		
-		trip.displayLoc();
+		System.out.println(trip);
+//		trip.displayLoc();
 		
 //		trip.bookRide();
 //		trip.prntTM();

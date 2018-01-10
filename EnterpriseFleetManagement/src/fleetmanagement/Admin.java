@@ -73,15 +73,40 @@ public class Admin {
 	}
 	
 	public void addNewVehicle() {
-//		Vehicle veh = new Vehicle();
-//		veh.addVehicle();
-		System.out.println("ADDED A VEHICLE");
+		Vehicle veh = new Vehicle();
+		veh.addVehicle();
+
 		goBackToMainMenu();
 	}
 	
 	public void retrieveVehicle() {
 		
-		System.out.println("RETRIEVED A VEHICLE");
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			System.out.println(veh);
+	        			System.out.println(vehRec);
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
 		goBackToMainMenu();
 	}
 	
@@ -93,7 +118,30 @@ public class Admin {
 	
 	public void decommissionVehicle() {
 		
-		System.out.println("DECOMMISSIONED A VEHICLE");
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			veh.decommissionVehicle();
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
 		goBackToMainMenu();
 	}
 	
@@ -133,15 +181,38 @@ public class Admin {
 	}
 	
 	public void addNewEmployee() {
-//		Vehicle veh = new Vehicle();
-//		veh.addVehicle();
-		System.out.println("ADDED AN EMPLOYEE");
+		Employee emp = new Employee();
+		emp.addEmployee();
+		
 		goBackToMainMenu();
 	}
 	
 	public void retrieveEmployee() {
 		
-		System.out.println("RETRIEVED AN EMPLOYEE");
+		System.out.println("Enter employee id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Employee emp = new Employee(Integer.parseInt(select));
+	        		if(emp.getEmpId() == 0){
+	        			System.out.println("There is no record of the employee in the database.");
+	        			System.out.println("Enter employee id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			System.out.println(emp);
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
 		goBackToMainMenu();
 	}
 	
@@ -153,7 +224,30 @@ public class Admin {
 	
 	public void deactivateEmployee() {
 		
-		System.out.println("DEACTIVATED AN EMPLOYEE");
+		System.out.println("Enter employee id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Employee emp = new Employee(Integer.parseInt(select));
+	        		if(emp.getEmpId() == 0){
+	        			System.out.println("There is no record of the employee in the database.");
+	        			System.out.println("Enter employee id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			emp.deactivateEmployee();
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
 		goBackToMainMenu();
 	}
 	
