@@ -12,21 +12,24 @@ public class MaintainEmployee {
 		
 		try {
 	        
-	        System.out.print("To add a new employee press A\nTo retrieve details of an employee press R\nTo update an employee record press U\nTo de-activate an employee press D\nTo go back to main menu press M");
+	        System.out.print("To add a new employee press A\nTo get details of an employee press G\nTo update an employee record press U\nTo de-activate an employee press D\nTo re-activate an employee press R\nTo go back to main menu press M");
 	        System.out.print("\nEnter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
 	        	if(select.equalsIgnoreCase("A")) {
 	        		addNewEmployee();
 	        		break;
-	        	}else if(select.equalsIgnoreCase("R")) {
-	        		retrieveEmployee();
+	        	}else if(select.equalsIgnoreCase("G")) {
+	        		getEmployeeDetails();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("U")) {
 	        		updateEmployee();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("D")) {
 	        		deactivateEmployee();
+	        		break;
+	        	}else if(select.equalsIgnoreCase("R")) {
+	        		reactivateEmployee();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("M")) {
 	        		Admin admin = new Admin();
@@ -51,7 +54,7 @@ public class MaintainEmployee {
 		goBackToPreviousMenu();
 	}
 	
-	public void retrieveEmployee() {
+	public void getEmployeeDetails() {
 		
 		System.out.println("Enter employee id: ");
 		try {
@@ -104,6 +107,35 @@ public class MaintainEmployee {
 	        			continue;
 	        		}else{
 	        			emp.deactivateEmployee();
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
+		goBackToPreviousMenu();
+	}
+	
+	public void reactivateEmployee() {
+		
+		System.out.println("Enter employee id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Employee emp = new Employee(Integer.parseInt(select));
+	        		if(emp.getEmpId() == 0){
+	        			System.out.println("There is no record of the employee in the database.");
+	        			System.out.println("Enter employee id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			emp.reactivateEmployee();
 	        		}
 	        		break;
 	        	}

@@ -162,6 +162,13 @@ public class Employee {
 		
 	}
 	
+	public void reactivateEmployee() {
+		
+		boolean success = EmployeeDB.reactivateEmployeeInDB(empId);
+		System.out.println("Employee with ID "+empId+" re-activated successfully: "+success);
+		
+	}
+	
 	public void employeeMenu() {
 		
 		try {

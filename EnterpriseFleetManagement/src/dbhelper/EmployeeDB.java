@@ -89,15 +89,34 @@ public class EmployeeDB {
 		
 		boolean success = false;
 		String sql = "UPDATE employee SET status = 'inactive' WHERE emp_id = " + empId + ";";
-//		Connection conn = null;
-//		Statement stmt = null;
 		
 		try {
 			
-//			Class.forName(JDBC_DRIVER);
-//			conn = DriverManager.getConnection(DB_URL,USER,PASS);
-//			stmt = conn.createStatement();
+			getSQLConnection();
 			
+			int result = stmt.executeUpdate(sql);
+			if(result > 0) {
+				success = true;
+			}
+			
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return success;
+	}
+	
+	public static boolean reactivateEmployeeInDB(int empId) {
+		
+		boolean success = false;
+		String sql = "UPDATE employee SET status = 'active' WHERE emp_id = " + empId + ";";
+		
+		try {
+
 			getSQLConnection();
 			
 			int result = stmt.executeUpdate(sql);
