@@ -139,9 +139,9 @@ public class TripManagement {
 		
 	}
 	
-	public HashMap<String, String> getLocList() {
+	public String getLocation(String pin) {
 		
-		return locList;
+		return locList.get(pin);
 		
 	}
 	
@@ -263,7 +263,7 @@ public class TripManagement {
 		ArrayList<VehicleRecords> vehRecList = new ArrayList<VehicleRecords>();
 		
 		ArrayList<String> category = getCategory(role);
-		ArrayList<Integer> availableVehId = VehicleDB.getAvailableVehicles(category);
+		ArrayList<Integer> availableVehId = VehicleDB.getAvailableVehiclesDB(category);
 		
 		if(!availableVehId.isEmpty()) {
 			for(int id : availableVehId) {

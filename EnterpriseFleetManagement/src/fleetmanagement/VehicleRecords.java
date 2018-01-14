@@ -1,6 +1,8 @@
 package fleetmanagement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import dbhelper.VehicleRecordsDB;
 
@@ -66,4 +68,23 @@ public class VehicleRecords {
 				"\nCurrent location pin: "+currPin;
 	}
 	
+	public void displayAllAvailableVehicles(){
+		
+		ArrayList<HashMap<String, String>> vehList = VehicleRecordsDB.listAllAvailableVehiclesDB();
+		Iterator<HashMap<String, String>> iterator = vehList.iterator();
+		
+		while(iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
+	}
+	
+	public void displayStatusOfAllVehicles(){
+		
+		ArrayList<HashMap<String, String>> vehList = VehicleRecordsDB.listStatusOfAllVehiclesDB();
+		Iterator<HashMap<String, String>> iterator = vehList.iterator();
+		
+		while(iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
+	}
 }

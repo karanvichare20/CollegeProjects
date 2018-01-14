@@ -106,7 +106,7 @@ public class VehicleDB {
 		return success;
 	}
 	
-	public static ArrayList<Integer> getAvailableVehicles(ArrayList<String> category) {
+	public static ArrayList<Integer> getAvailableVehiclesDB(ArrayList<String> category) {
 		
 		ArrayList<Integer> vehIdList = new ArrayList<Integer>();
 		

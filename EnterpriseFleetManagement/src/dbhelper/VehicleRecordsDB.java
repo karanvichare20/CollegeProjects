@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class VehicleRecordsDB {
@@ -68,25 +69,6 @@ public class VehicleRecordsDB {
 		return result;
 	}
 	
-/*	public static void updateStatusInDB(int vehId, String status) {
-		
-		try {
-			
-			getSQLConnection();
-			
-			//Updates the corresponding record in the vehicle_records table in the database.
-			String sql = "UPDATE vehicle_records SET status = '"+status+"' WHERE veh_id = "+vehId+";";
-			stmt.executeUpdate(sql);
-			
-			closeSQLConnection();
-			
-		}catch (SQLException se) {
-			se.printStackTrace();
-		}catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-	}*/
-	
 	public static void updateColumnValueInDB(int vehId, String columnName , String value) {
 		
 		String sql = null;
@@ -140,6 +122,81 @@ public class VehicleRecordsDB {
 		return success;
 	}
 
+	public static ArrayList<HashMap<String, String>> listAllAvailableVehiclesDB() {
+
+		ArrayList<HashMap<String, String>> vehList = new ArrayList<HashMap<String, String>>();
+		
+		String sql = "SELECT v.veh_id, v.model, v.brand, v.reg_no, v.pax, v.category, vr.curr_pin "
+				+ "FROM vehicle AS v NATURAL JOIN vehicle_records AS vr "
+				+ "WHERE v.service = 'active' and vr.status = 'available';";
+		try {
+			
+			getSQLConnection();
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			while(rs.next()) {
+				HashMap<String, String> result = new HashMap<String, String>();
+				String name;
+				// The column count starts from 1
+				for (int i = 1; i <= columnCount; i++ ) {
+					name = rsmd.getColumnName(i);
+					result.put(name, rs.getString(name));
+				}
+				vehList.add(result);
+			}
+			
+			rs.close();
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return vehList;
+	}
+	
+	public static ArrayList<HashMap<String, String>> listStatusOfAllVehiclesDB() {
+
+		ArrayList<HashMap<String, String>> vehList = new ArrayList<HashMap<String, String>>();
+		
+		String sql = "SELECT v.veh_id, v.model, v.brand, v.reg_no, v.pax, v.category, v.service, vr.status, vr.curr_pin "
+				+ "FROM vehicle AS v NATURAL JOIN vehicle_records AS vr;";
+		try {
+			
+			getSQLConnection();
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			while(rs.next()) {
+				HashMap<String, String> result = new HashMap<String, String>();
+				String name;
+				// The column count starts from 1
+				for (int i = 1; i <= columnCount; i++ ) {
+					name = rsmd.getColumnName(i);
+					result.put(name, rs.getString(name));
+				}
+				vehList.add(result);
+			}
+			
+			rs.close();
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return vehList;
+	}
+	
 	public static void getSQLConnection() throws SQLException, ClassNotFoundException {
 		
 		Class.forName(DatabaseContants.JDBC_DRIVER);

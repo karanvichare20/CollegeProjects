@@ -12,8 +12,9 @@ public class VehicleTest {
 	//	veh.addVehicle();
 //		System.out.println(veh);
 		
-		VehicleRecords vehRec = new VehicleRecords(1023);
-		System.out.println(vehRec);
+		VehicleRecords vehRec = new VehicleRecords();
+//		vehRec.displayAllAvailableVehicles();
+		vehRec.displayStatusOfAllVehicles();
 		
 		
 	}
