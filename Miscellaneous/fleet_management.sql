@@ -60,15 +60,15 @@ DROP TABLE IF EXISTS `maintenance_tracker`;
 CREATE TABLE `maintenance_tracker` (
   `maint_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `veh_id` int(10) unsigned DEFAULT NULL,
-  `maint_date` date DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
+  `maint_date` varchar(15) DEFAULT NULL,
+  `due_date` varchar(15) DEFAULT NULL,
   `maint_cost` decimal(8,2) unsigned DEFAULT '0.00',
   `description` blob,
   `maint_type` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`maint_id`),
   KEY `maintenance_veh_id_fk_idx` (`veh_id`),
   CONSTRAINT `maintenance_veh_id_fk` FOREIGN KEY (`veh_id`) REFERENCES `vehicle` (`veh_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-07  4:53:41
+-- Dump completed on 2018-01-14 15:45:40
