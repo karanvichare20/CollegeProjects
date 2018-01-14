@@ -171,6 +171,11 @@ public class TripManagement {
 	
 	public void bookRide(Employee emp) {
 		
+		if(emp.getStatus().equals("inactive")) {
+			System.out.println("Employee is inactive");
+			return;
+		}
+		
 		empId = emp.getEmpId();
 		if(TripManagementDB.checkActiveBookingInDB(empId)) {
 			System.out.println("You already have an existing active booking or an ongoing trip. Cancel or Complete it to book a new trip.");
