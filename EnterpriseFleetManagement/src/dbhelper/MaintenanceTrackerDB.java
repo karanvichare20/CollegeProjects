@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MaintenanceTrackerDB {
@@ -50,7 +51,42 @@ public class MaintenanceTrackerDB {
 		return result;
 	}
 
-	
+	public static ArrayList<HashMap<String, String>> listMaintHistoryForVehicle(int vehId) {
+		
+		ArrayList<HashMap<String, String>> maintList = new ArrayList<HashMap<String, String>>();
+		
+		String sql = "SELECT * FROM maintenance_tracker WHERE veh_id = "+vehId+";";
+		try {
+			
+			getSQLConnection();
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			while(rs.next()) {
+				HashMap<String, String> result = new HashMap<String, String>();
+				String name;
+				// The column count starts from 1
+				for (int i = 1; i <= columnCount; i++ ) {
+					name = rsmd.getColumnName(i);
+					result.put(name, rs.getString(name));
+				}
+				maintList.add(result);
+			}
+			
+			rs.close();
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return maintList;
+		
+	}
 	
 	
 	

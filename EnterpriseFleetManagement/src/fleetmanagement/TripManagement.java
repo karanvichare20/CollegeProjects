@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import dbhelper.TripManagementDB;
@@ -368,15 +369,8 @@ public class TripManagement {
 			System.out.println("\nThere are no vehicles booked in your name or your last trip hasn't ended yet. Please end your ongoing trip and/or book a new trip.");
 			return;
 		}
-		tripId = Integer.parseInt(record.get("trip_id"));
 		
-/*		tripId = TripManagementDB.getTripIdFromDB(emp.getEmpId(), "booked");
-		
-		if(tripId == 0) {
-			System.out.println("There are no vehicles booked in your name.");
-			return;
-		}*/
-		
+		tripId = Integer.parseInt(record.get("trip_id"));	
 		vehId = Integer.parseInt(record.get("veh_id"));
 		pickPin = record.get("pick_pin");
 		
@@ -426,16 +420,8 @@ public class TripManagement {
 			System.out.println("You have no ongoing rides in your name.");
 			return;
 		}
+		
 		tripId = Integer.parseInt(record.get("trip_id"));
-		
-		
-/*		tripId = TripManagementDB.getTripIdFromDB(emp.getEmpId(), "enroute");
-		
-		if(tripId == 0) {
-			System.out.println("You have no ongoing rides in your name.");
-			return;
-		}*/
-		
 		vehId = Integer.parseInt(record.get("veh_id"));
 		dropPin = record.get("drop_pin");
 				
@@ -466,13 +452,6 @@ public class TripManagement {
 						}else {
 							System.out.println("your trip could not be ended due to technical error with vehicle data. Try again later.");
 						}
-						
-/*						VehicleRecordsDB.updateColumnValueInDB(vehId, "status", "available");
-						VehicleRecordsDB.updateColumnValueInDB(vehId, "curr_pin", dropPin);
-						VehicleRecordsDB.updateColumnValueInDB(vehId, "miles", Double.toString(distance));
-						VehicleRecordsDB.updateColumnValueInDB(vehId, "fuel_cost", Double.toString(tripCost));
-						*/
-
 					}else {
 						System.out.println("your trip could not be ended due to technical error with trip data. Try again later.");
 					}
@@ -508,11 +487,7 @@ public class TripManagement {
 			fuelUsed = Double.parseDouble(decForm.format(distance/mileage));
 			
 			tripCost = Double.parseDouble(decForm.format(fuelPrice*fuelUsed));
-			
-/*			fuelUsed = distance/mileage;
-			
-			tripCost = fuelPrice*fuelUsed;*/
-			
+						
 		}catch (IOException ioe) {
 	        ioe.printStackTrace();
 	    }
@@ -526,15 +501,8 @@ public class TripManagement {
 			System.out.println("There are no vehicles booked in your name or you have an ongoing trip.\nP.N: Ongoing trip cannot be cancelled. Please end the trip");
 			return;
 		}
+		
 		tripId = Integer.parseInt(record.get("trip_id"));
-		
-/*		tripId = TripManagementDB.getTripIdFromDB(emp.getEmpId(), "booked");
-		
-		if(tripId == 0) {
-			System.out.println("There are no vehicles booked in your name.");
-			return;
-		}*/
-		
 		vehId = Integer.parseInt(record.get("veh_id"));
 		
 		System.out.println("You have an active booking with booking ID: "+tripId+".\nTo cancel this trip press 'C' \tTo go back to previous menu press 'B'");
@@ -547,8 +515,6 @@ public class TripManagement {
 			while(true) {
 				
 				if(select.equalsIgnoreCase("C")) {
-					
-//					tripStart = dateFormat.format(new Date(calendar.getTimeInMillis()));
 					
 					boolean success = TripManagementDB.updateTripStatusInDB(this, "cancelled");
 					if(success) {
@@ -572,6 +538,71 @@ public class TripManagement {
 	        ioe.printStackTrace();
 	    }
 		
+	}
+	
+	public void displayTripHistoryForVehicle(){
+		
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+//	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			ArrayList<HashMap<String, String>> tripList = TripManagementDB.listTripHistoryForVehicle(veh.getVehId());
+	        			Iterator<HashMap<String, String>> iterator = tripList.iterator();
+	        			
+	        			while(iterator.hasNext()) {
+	        				System.out.println(iterator.next());
+	        			}
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+	}
+	
+	public void displayTripRecordsOfEmployee(){
+		
+		System.out.println("Enter employee id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Employee emp = new Employee(Integer.parseInt(select));
+	        		if(emp.getEmpId() == 0){
+	        			System.out.println("There is no record of the employee in the database.");
+	        			System.out.println("Enter employee id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			ArrayList<HashMap<String, String>> tripList = TripManagementDB.listTripRecordsOfEmployee(emp.getEmpId());
+	        			Iterator<HashMap<String, String>> iterator = tripList.iterator();
+	        			
+	        			while(iterator.hasNext()) {
+	        				System.out.println(iterator.next());
+	        			}
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
 	}
 
 }

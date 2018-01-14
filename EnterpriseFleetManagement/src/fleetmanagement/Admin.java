@@ -11,8 +11,8 @@ public class Admin {
 	public void adminMenu() {
 		
 		try {
-	        
-	        System.out.print("For vehicle maintenance press V\nFor employee maintenance press E\nFor trip management press T\nTo logout press L");
+			System.out.println("-----Admin Main Menu-----\n");
+	        System.out.print("For vehicle maintenance press V\nFor employee maintenance press E\nFor trip management press T\nFor overview report press O\nTo logout press L");
 	        System.out.print("\nEnter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
@@ -26,7 +26,11 @@ public class Admin {
 	        		break;
 	        	}else if(select.equalsIgnoreCase("T")) {
 	        		AdminTripManagement atm = new AdminTripManagement();
-	        		atm.tripManagementMenu();
+	        		atm.tripManagement();
+	        		break;
+	        	}else if(select.equalsIgnoreCase("O")) {
+	        		AdminOverview ao = new AdminOverview();
+	        		ao.adminOverview();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("L")) {
 	        		System.out.println("You have been successfully logged out");
@@ -46,7 +50,7 @@ public class Admin {
 	
 	
 	
-	public void goBackToMainMenu() {
+/*	public void goBackToMainMenu() {
 		
 		System.out.println("To go back to main menu press 'M'\nTo logout press 'L'");
 		
@@ -72,5 +76,5 @@ public class Admin {
 		}catch (IOException ioe) {
 	        ioe.printStackTrace();
 	    }
-	}
+	}*/
 }

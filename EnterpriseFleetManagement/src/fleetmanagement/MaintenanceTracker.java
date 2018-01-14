@@ -1,6 +1,11 @@
 package fleetmanagement;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import dbhelper.MaintenanceTrackerDB;
 
@@ -14,6 +19,7 @@ public class MaintenanceTracker {
 	private String description;
 	private String maintType;
 	
+	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	
 	public MaintenanceTracker() {
 		
@@ -63,5 +69,36 @@ public class MaintenanceTracker {
 		return maintType;
 	}
 	
-	
+	public void displayMaintHistoryForVehicle(){
+		
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+//	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			ArrayList<HashMap<String, String>> maintList = MaintenanceTrackerDB.listMaintHistoryForVehicle(veh.getVehId());
+	        			Iterator<HashMap<String, String>> iterator = maintList.iterator();
+	        			
+	        			while(iterator.hasNext()) {
+	        				System.out.println(iterator.next());
+	        			}
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+	}
 }

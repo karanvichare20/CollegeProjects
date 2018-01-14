@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import fleetmanagement.TripManagement;
@@ -72,33 +73,6 @@ public class TripManagementDB {
 		
 		return tripId;
 	}
-	
-/*	public static int getTripIdFromDB(int empId, String status) {
-		
-		int tripId = 0;
-		
-		try {
-			
-			getSQLConnection();
-			
-			String sql = "SELECT trip_id FROM trip_management WHERE emp_id = "+empId+" AND status = '"+status+"';";
-			ResultSet rs = stmt.executeQuery(sql);
-			
-			while (rs.next()) {
-				tripId = rs.getInt("trip_id");
-			}
-			
-			rs.close();
-			closeSQLConnection();
-			
-		}catch (SQLException se) {
-			se.printStackTrace();
-		}catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-		
-		return tripId;
-	}*/
 	
 	public static HashMap<String, String> getTripRecordFromDB(int empId, String status) {
 		
@@ -178,33 +152,6 @@ public class TripManagementDB {
 		return success;
 	}
 	
-/*	public static int getVehIdFromDB(int tripId) {
-		
-		int vehId = 0;
-		
-		try {
-			
-			getSQLConnection();
-			
-			String sql = "SELECT veh_id FROM trip_management WHERE trip_id = "+tripId+";";
-			ResultSet rs = stmt.executeQuery(sql);
-			
-			while (rs.next()) {
-				vehId = rs.getInt("veh_id");
-			}
-			
-			rs.close();
-			closeSQLConnection();
-			
-		}catch (SQLException se) {
-			se.printStackTrace();
-		}catch (ClassNotFoundException ce) {
-			ce.printStackTrace();
-		}
-		
-		return vehId;
-	}*/
-	
 	public static HashMap<String, String> queryDB(int pKey) {
 		
 		HashMap<String, String> result = new HashMap<String, String>();
@@ -239,6 +186,80 @@ public class TripManagementDB {
 		}
 		
 		return result;
+	}
+	
+	public static ArrayList<HashMap<String, String>> listTripHistoryForVehicle(int vehId) {
+		
+		ArrayList<HashMap<String, String>> tripList = new ArrayList<HashMap<String, String>>();
+		
+		String sql = "SELECT * FROM trip_management WHERE veh_id = "+vehId+";";
+		try {
+			
+			getSQLConnection();
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			while(rs.next()) {
+				HashMap<String, String> result = new HashMap<String, String>();
+				String name;
+				// The column count starts from 1
+				for (int i = 1; i <= columnCount; i++ ) {
+					name = rsmd.getColumnName(i);
+					result.put(name, rs.getString(name));
+				}
+				tripList.add(result);
+			}
+			
+			rs.close();
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return tripList;
+		
+	}
+	
+	public static ArrayList<HashMap<String, String>> listTripRecordsOfEmployee(int empId) {
+		
+		ArrayList<HashMap<String, String>> tripList = new ArrayList<HashMap<String, String>>();
+		
+		String sql = "SELECT * FROM trip_management WHERE emp_id = "+empId+";";
+		try {
+			
+			getSQLConnection();
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			
+			while(rs.next()) {
+				HashMap<String, String> result = new HashMap<String, String>();
+				String name;
+				// The column count starts from 1
+				for (int i = 1; i <= columnCount; i++ ) {
+					name = rsmd.getColumnName(i);
+					result.put(name, rs.getString(name));
+				}
+				tripList.add(result);
+			}
+			
+			rs.close();
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return tripList;
+		
 	}
 	
 	public static void getSQLConnection() throws SQLException, ClassNotFoundException {

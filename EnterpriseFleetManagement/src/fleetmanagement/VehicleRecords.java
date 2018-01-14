@@ -1,5 +1,8 @@
 package fleetmanagement;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,6 +18,7 @@ public class VehicleRecords {
 	private String status;
 	private String currPin;
 	
+	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 	
 	public VehicleRecords() {
 		
@@ -86,5 +90,34 @@ public class VehicleRecords {
 		while(iterator.hasNext()) {
 			System.out.println(iterator.next());
 		}
+	}
+	
+	public void displayVehicleRunningStats(){
+		
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
+	        		if(vehRec.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else{
+	        			System.out.println("Total kilometers run: "+vehRec.getMiles());
+	        			System.out.println("Total fuel cost till date: "+vehRec.getFuelCost());
+	        			System.out.println("Total maintenance cost till date: "+vehRec.getMaintCost());
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
 	}
 }

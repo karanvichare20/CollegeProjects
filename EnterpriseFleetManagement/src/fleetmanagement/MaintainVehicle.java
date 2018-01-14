@@ -12,15 +12,16 @@ public class MaintainVehicle {
 
 		try {
 	        
-	        System.out.print("To add a new vehicle press A\nTo retrieve details of a vehicle press R\nTo update a vehicle record press U\nTo decommission a vehicle press D\nTo go back to main menu press M");
+	        System.out.print("To add a new vehicle press A\nTo get details of a vehicle press G\nTo update a vehicle record press U"
+	        		+ "\nTo decommission a vehicle press D\nTo go back to main menu press M");
 	        System.out.print("\nEnter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
 	        	if(select.equalsIgnoreCase("A")) {
 	        		addNewVehicle();
 	        		break;
-	        	}else if(select.equalsIgnoreCase("R")) {
-	        		retrieveVehicle();
+	        	}else if(select.equalsIgnoreCase("G")) {
+	        		getVehicleDetails();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("U")) {
 	        		updateVehicle();
@@ -51,7 +52,7 @@ public class MaintainVehicle {
 		goBackToPreviousMenu();
 	}
 	
-	public void retrieveVehicle() {
+	public void getVehicleDetails() {
 		
 		System.out.println("Enter vehicle id: ");
 		try {

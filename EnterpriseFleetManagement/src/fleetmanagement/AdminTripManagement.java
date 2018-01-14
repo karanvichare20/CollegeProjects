@@ -8,11 +8,11 @@ public class AdminTripManagement {
 	
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
 
-	public void tripManagementMenu() {
+	public void tripManagement() {
 
 		try {
-	        
-	        System.out.print("To assign a vehicle to employee press A\nTo revoke a vehicle press R\nTo check current location(status) of vehicle press S\nTo get all vehicle overview press O\nTo go back to main menu press M");
+	        System.out.println("-----Admin Trip Management Menu-----\n");
+	        System.out.print("To assign a vehicle to employee press A\nTo revoke a vehicle press R\nTo check current location(status) of vehicle press S\nTo go back to main menu press M");
 	        System.out.print("\nEnter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
@@ -24,9 +24,6 @@ public class AdminTripManagement {
 	        		break;
 	        	}else if(select.equalsIgnoreCase("S")) {
 	        		checkVehicleStatus();
-	        		break;
-	        	}else if(select.equalsIgnoreCase("O")) {
-	        		getVehicleOverview();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("M")) {
 	        		Admin admin = new Admin();
@@ -134,35 +131,6 @@ public class AdminTripManagement {
 		goBackToPreviousMenu();
 	}
 	
-	public void getVehicleOverview() {
-		
-		VehicleRecords vehRec = new VehicleRecords();
-		
-		try {
-	        
-	        System.out.print("To see all available vehicles press A\nTo see status of all vehicles press S");
-	        System.out.print("\nEnter selection: ");
-	        String select = reader.readLine();
-	        while(true) {
-	        	if(select.equalsIgnoreCase("A")) {
-	        		vehRec.displayAllAvailableVehicles();
-	        		break;
-	        	}else if(select.equalsIgnoreCase("S")) {
-	        		vehRec.displayStatusOfAllVehicles();
-	        		break;
-	        	}else {
-	        		System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
-					select = reader.readLine();
-	        	}
-	        }
-	     
-	    } catch (IOException ioe) {
-	        ioe.printStackTrace();
-	    }
-		
-		goBackToPreviousMenu();
-	}
 	
 	public void goBackToPreviousMenu() {
 		
@@ -176,7 +144,7 @@ public class AdminTripManagement {
 			while(true) {
 				
 				if(select.equalsIgnoreCase("B")) {
-					tripManagementMenu();
+					tripManagement();
 					break;
 				}else if (select.equalsIgnoreCase("L")) {
 					System.out.println("You have been successfully logged out");
