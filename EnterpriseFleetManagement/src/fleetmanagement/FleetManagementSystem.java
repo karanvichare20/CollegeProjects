@@ -12,7 +12,7 @@ public class FleetManagementSystem {
 		ApplicationLogin login = new ApplicationLogin();
 		System.out.print("\n");
 		System.out.println("<----------------------------------------------------------------------------------ENTERPRISE FLEET MANAGEMENT SYSTEM---------------------------------------------------------------------------------->\n");
-		System.out.println("For Admin login press 'A' \nFor Employee login press 'E'");
+		System.out.println("For Admin login press 'A' \nFor Employee login press 'E'");	
 		
 		try {
 			
