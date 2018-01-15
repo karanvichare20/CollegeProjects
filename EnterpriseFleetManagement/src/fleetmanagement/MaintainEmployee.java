@@ -105,6 +105,8 @@ public class MaintainEmployee {
 	        			System.out.println("Enter employee id again: ");
 	        			select = reader.readLine();
 	        			continue;
+	        		}else if(emp.getStatus().equals("inactive")){
+	        			System.out.println("The employee is already inactive.");
 	        		}else{
 	        			emp.deactivateEmployee();
 	        		}
@@ -134,6 +136,8 @@ public class MaintainEmployee {
 	        			System.out.println("Enter employee id again: ");
 	        			select = reader.readLine();
 	        			continue;
+	        		}else if(emp.getStatus().equals("active")){
+	        			System.out.println("The employee is already active.");
 	        		}else{
 	        			emp.reactivateEmployee();
 	        		}

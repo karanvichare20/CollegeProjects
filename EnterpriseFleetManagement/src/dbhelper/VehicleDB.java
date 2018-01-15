@@ -106,6 +106,58 @@ public class VehicleDB {
 		return success;
 	}
 	
+	public static boolean reactivateVehicleInDB(int vehId) {
+		
+		boolean success = false;
+		String sql = "UPDATE vehicle SET service = 'active' WHERE veh_id = " + vehId + ";";
+	
+		try {
+
+			getSQLConnection();
+			
+			int result = stmt.executeUpdate(sql);
+			if(result > 0) {
+				VehicleRecordsDB.updateColumnValueInDB(vehId, "status", "available");
+				success = true;
+			}
+			
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return success;
+	}
+	
+	public static boolean repairVehicleInDB(int vehId) {
+		
+		boolean success = false;
+		String sql = "UPDATE vehicle SET service = 'repair' WHERE veh_id = " + vehId + ";";
+	
+		try {
+
+			getSQLConnection();
+			
+			int result = stmt.executeUpdate(sql);
+			if(result > 0) {
+				VehicleRecordsDB.updateColumnValueInDB(vehId, "status", "unavailable");
+				success = true;
+			}
+			
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return success;
+	}
+	
 	public static ArrayList<Integer> getAvailableVehiclesDB(ArrayList<String> category) {
 		
 		ArrayList<Integer> vehIdList = new ArrayList<Integer>();

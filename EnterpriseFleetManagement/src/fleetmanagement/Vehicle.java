@@ -135,5 +135,12 @@ public class Vehicle {
 		System.out.println("Vehicle with ID "+vehId+" de-commissioned successfully :"+success);
 		
 	}
+	
+	public void reactivateVehicle() {
+		
+		boolean success = VehicleDB.reactivateVehicleInDB(vehId);
+		System.out.println("Vehicle with ID "+vehId+" re-activated successfully :"+success);
+		
+	}
 
 }

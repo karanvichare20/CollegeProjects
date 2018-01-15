@@ -13,7 +13,8 @@ public class MaintainVehicle {
 		try {
 	        
 	        System.out.print("To add a new vehicle press A\nTo get details of a vehicle press G\nTo update a vehicle record press U"
-	        		+ "\nTo decommission a vehicle press D\nTo go back to main menu press M");
+	        		+ "\nTo decommission a vehicle press D\nTo send vehicle for repair maintenance press R\nTo send vehicle for inspection maintenance press I"
+	        		+ "\nTo get a vehicle back into service press S\nTo go back to main menu press M");
 	        System.out.print("\nEnter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
@@ -28,6 +29,15 @@ public class MaintainVehicle {
 	        		break;
 	        	}else if (select.equalsIgnoreCase("D")) {
 	        		decommissionVehicle();
+	        		break;
+	        	}else if (select.equalsIgnoreCase("R")) {
+	        		repairVehicle();
+	        		break;
+	        	}else if (select.equalsIgnoreCase("I")) {
+	        		inspectVehicle();
+	        		break;
+	        	}else if (select.equalsIgnoreCase("S")) {
+	        		returnVehicleIntoService();
 	        		break;
 	        	}else if (select.equalsIgnoreCase("M")) {
 	        		Admin admin = new Admin();
@@ -105,8 +115,108 @@ public class MaintainVehicle {
 	        			System.out.println("Enter vehicle id again: ");
 	        			select = reader.readLine();
 	        			continue;
+	        		}else if(veh.getService().equals("decommissioned")){
+	        			System.out.println("The vehicle is already decommissioned.");
 	        		}else{
 	        			veh.decommissionVehicle();
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
+		goBackToPreviousMenu();
+	}
+	
+	public void repairVehicle() {
+		
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else if(veh.getService().matches("decommissioned|repair")){
+	        			System.out.println("The vehicle is either decommissioned or already in maintenance.");
+	        		}else{
+	        			MaintenanceTracker maint = new MaintenanceTracker();
+	        			maint.sendForRepairMaint(veh);
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+		
+		goBackToPreviousMenu();
+	}
+
+	public void inspectVehicle() {
+	
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else if(veh.getService().matches("decommissioned|repair")){
+	        			System.out.println("The vehicle is either decommissioned or already in maintenance.");
+	        		}else{
+	        			MaintenanceTracker maint = new MaintenanceTracker();
+	        			maint.sendForInspectionMaint(veh);
+	        			
+	        		}
+	        		break;
+	        	}
+	        }
+		}catch (IOException ioe) {
+	        ioe.printStackTrace();
+	    }
+	
+	goBackToPreviousMenu();
+}
+	
+	public void returnVehicleIntoService() {
+		
+		System.out.println("Enter vehicle id: ");
+		try {
+			String select = reader.readLine();
+	        while(true) {
+	        	if(!select.matches("-?\\d+")) {
+	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		select = reader.readLine();
+	        	}else {
+	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
+	        		if(veh.getVehId() == 0){
+	        			System.out.println("There is no record of the vehicle in the database.");
+	        			System.out.println("Enter vehicle id again: ");
+	        			select = reader.readLine();
+	        			continue;
+	        		}else if(veh.getService().equals("decommissioned")){
+	        			System.out.println("The vehicle is decommissioned permanently. Cannot be re-activated.");
+	        		}else if(veh.getService().equals("active")){
+	        			System.out.println("The vehicle is already active.");
+	        		}else{
+	        			veh.reactivateVehicle();
 	        		}
 	        		break;
 	        	}

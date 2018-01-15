@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fleetmanagement.MaintenanceTracker;
+import fleetmanagement.TripManagement;
+
 public class MaintenanceTrackerDB {
 
 	private static Connection conn = null;
@@ -88,7 +91,36 @@ public class MaintenanceTrackerDB {
 		
 	}
 	
-	
+	public static int createMaintenanceEntry(MaintenanceTracker maint) {
+		
+		int maintId = 0;
+		
+		try {
+			
+			getSQLConnection();
+			
+			String sql = "INSERT INTO maintenance_tracker (veh_id, maint_date, due_date, maint_cost, description, maint_type) "
+					+ "VALUES ("+maint.getVehId()+", '"+maint.getMaintDate()+"', '"+maint.getDueDate()+"', "+maint.getMaintCost()+", '"+maint.getDescription()+"', '"+maint.getMaintType()+"');";
+			
+			stmt.executeUpdate(sql);
+			
+			String sql2 = "SELECT MAX(maint_id) FROM maintenance_tracker;";
+			ResultSet rs = stmt.executeQuery(sql2);
+			
+			while (rs.next()) {
+				maintId = rs.getInt("max(maint_id)");
+			}
+			
+			closeSQLConnection();
+			
+		}catch (SQLException se) {
+			se.printStackTrace();
+		}catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
+		}
+		
+		return maintId;
+	}
 	
 	public static void getSQLConnection() throws SQLException, ClassNotFoundException {
 		
