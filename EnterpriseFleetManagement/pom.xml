@@ -3,6 +3,22 @@
   <groupId>EnterpriseFleetManagement</groupId>
   <artifactId>EnterpriseFleetManagement</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <repositories>
+    <repository>
+        <id>fdvsolution.public</id>
+        <url> http://archiva.fdvs.com.ar/repository/public1/</url>
+    </repository>
+  </repositories>
+  
+  <dependencies>
+  	<dependency>
+    	<groupId>ar.com.fdvs</groupId>
+    	<artifactId>DynamicJasper</artifactId>
+    	<version>5.1.0</version>
+   	</dependency>
+  </dependencies>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -16,4 +32,5 @@
       </plugin>
     </plugins>
   </build>
+  
 </project>
