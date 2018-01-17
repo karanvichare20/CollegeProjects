@@ -102,6 +102,13 @@ public class MaintenanceTracker {
 	        			while(iterator.hasNext()) {
 	        				System.out.println(iterator.next());
 	        			}
+	        			
+	        			if(!maintList.isEmpty()) {
+	        				OverviewReports.displayMaintHistoryForVehicle(maintList, veh.getVehId());
+	        			}else{
+	        				System.out.println("No records");
+	        			}
+	        			
 	        		}
 	        		break;
 	        	}

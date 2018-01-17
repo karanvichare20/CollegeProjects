@@ -80,6 +80,13 @@ public class VehicleRecords {
 		while(iterator.hasNext()) {
 			System.out.println(iterator.next());
 		}
+		
+		if(!vehList.isEmpty()) {
+			OverviewReports.displayAllAvailableVehicles(vehList);
+		}else{
+			System.out.println("No records");
+		}
+		
 	}
 	
 	public void displayStatusOfAllVehicles(){
@@ -90,9 +97,19 @@ public class VehicleRecords {
 		while(iterator.hasNext()) {
 			System.out.println(iterator.next());
 		}
+		
+		if(!vehList.isEmpty()) {
+			OverviewReports.displayStatusOfAllVehicles(vehList);
+		}else{
+			System.out.println("No records");
+		}
+		
 	}
 	
 	public void displayVehicleRunningStats(){
+		
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		HashMap<String, String> statList = new HashMap<String, String>();
 		
 		System.out.println("Enter vehicle id: ");
 		try {
@@ -109,9 +126,17 @@ public class VehicleRecords {
 	        			select = reader.readLine();
 	        			continue;
 	        		}else{
+	        			statList.put("miles", ""+vehRec.getMiles());
 	        			System.out.println("Total kilometers run: "+vehRec.getMiles());
+	        			
+	        			statList.put("fuelcost", ""+vehRec.getFuelCost());
 	        			System.out.println("Total fuel cost till date: "+vehRec.getFuelCost());
+	        			
+	        			statList.put("maintcost", ""+vehRec.getMaintCost());
 	        			System.out.println("Total maintenance cost till date: "+vehRec.getMaintCost());
+	        			
+	        			list.add(statList);
+	        			OverviewReports.displayVehicleRunningStats(list, vehRec.getVehId());
 	        		}
 	        		break;
 	        	}

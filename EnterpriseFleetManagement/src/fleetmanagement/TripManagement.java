@@ -564,6 +564,13 @@ public class TripManagement {
 	        			while(iterator.hasNext()) {
 	        				System.out.println(iterator.next());
 	        			}
+	        			
+	        			if(!tripList.isEmpty()) {
+	        				OverviewReports.displayTripHistoryForVehicle(tripList, veh.getVehId());
+	        			}else{
+	        				System.out.println("No records");
+	        			}
+	        			
 	        		}
 	        		break;
 	        	}
@@ -596,6 +603,13 @@ public class TripManagement {
 	        			while(iterator.hasNext()) {
 	        				System.out.println(iterator.next());
 	        			}
+	        			
+	        			if(!tripList.isEmpty()) {
+	        				OverviewReports.displayTripRecordsOfEmployee(tripList, emp.getEmpId());
+	        			}else{
+	        				System.out.println("No records");
+	        			}
+	        			
 	        		}
 	        		break;
 	        	}
