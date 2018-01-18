@@ -34,7 +34,7 @@ public class OverviewReports {
 
 		try {
 			//show the report
-			report.show();
+			report.show(false);
 
 			//export the report to a pdf file
 			//report.toPdf(new FileOutputStream("c:/report.pdf"));
@@ -68,7 +68,7 @@ public class OverviewReports {
 
 		try {
 			//show the report
-			report.show();
+			report.show(false);
 
 			//export the report to a pdf file
 			//report.toPdf(new FileOutputStream("c:/report.pdf"));
@@ -96,7 +96,7 @@ public class OverviewReports {
 
 		try {
 			//show the report
-			report.show();
+			report.show(false);
 
 			//export the report to a pdf file
 			//report.toPdf(new FileOutputStream("c:/report.pdf"));
@@ -133,7 +133,7 @@ public class OverviewReports {
 
 		try {
 			//show the report
-			report.show();
+			report.show(false);
 
 			//export the report to a pdf file
 			//report.toPdf(new FileOutputStream("c:/report.pdf"));
@@ -170,7 +170,7 @@ public class OverviewReports {
 
 		try {
 			//show the report
-			report.show();
+			report.show(false);
 
 			//export the report to a pdf file
 			//report.toPdf(new FileOutputStream("c:/report.pdf"));
@@ -202,7 +202,7 @@ public class OverviewReports {
 
 		try {
 			//show the report
-			report.show();
+			report.show(false);
 
 			//export the report to a pdf file
 			//report.toPdf(new FileOutputStream("c:/report.pdf"));
