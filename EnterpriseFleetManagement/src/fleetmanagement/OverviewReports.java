@@ -15,7 +15,7 @@ public class OverviewReports {
 	
 	public static void displayAllAvailableVehicles(ArrayList<HashMap<String, String>> list) {
 
-		JasperReportBuilder report = DynamicReports.report();//a new report
+		JasperReportBuilder report = DynamicReports.report();//create a new report
 		report
 		.columns(
 				Columns.column("Vehicle ID", "veh_id", DataTypes.stringType()),

@@ -173,8 +173,6 @@ public class MaintenanceTracker {
 			System.out.println("Unable to start inspection due to technical issues. Try again later.");
 		}
 		
-//		System.out.println(maintDate);
-//		System.out.println(dueDate);
 	}
 	
 	public void calcCost() {

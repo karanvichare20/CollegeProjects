@@ -50,9 +50,6 @@ public class ApplicationLogin {
 	        Employee emp = new Employee(Integer.parseInt(userId));
 	        emp.employeeMenu();
 	        
-//	        System.out.println("Your user id is: " + userId);
-//	        System.out.println("Your password is: " + password);
-	        
 	    } catch (IOException ioe) {
 	        ioe.printStackTrace();
 	    }
@@ -65,12 +62,6 @@ public class ApplicationLogin {
 		try {
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
 	        
-/*	        System.out.print("ADMIN USERNAME: ");
-	        userId = reader.readLine();
-	        while(username.equals("")||userId==null) {
-	        	System.out.print("Please enter a valid USERNAME:");
-	        	userId = reader.readLine();
-	        } */
 	        System.out.print("-----------------------------------------ADMIN LOGIN---------------------------------------------->");
 	        System.out.print("\nEnter Admin password: ");
 	        password = reader.readLine();
@@ -86,8 +77,6 @@ public class ApplicationLogin {
 	        
 	        Admin admin = new Admin();
 	        admin.adminMenu();
-	        
-//	        System.out.println("Your admin password is: " + password);
 	        
 	    } catch (IOException ioe) {
 	        ioe.printStackTrace();

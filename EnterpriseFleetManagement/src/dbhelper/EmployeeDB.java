@@ -49,16 +49,10 @@ public class EmployeeDB {
 	
 	public static int addEmployeeToDB(String sql) {
 		
-//		Connection conn = null;
-//		Statement stmt = null;
 		int empId = 0;
 		
 		try {
-			
-/*			Class.forName(JDBC_DRIVER);
-			conn = DriverManager.getConnection(DB_URL,USER,PASS);
-			stmt = conn.createStatement();	*/
-			
+				
 			getSQLConnection();
 			
 			stmt.executeUpdate(sql);
@@ -73,8 +67,6 @@ public class EmployeeDB {
 			rs.close();
 			
 			closeSQLConnection();
-//			stmt.close();
-//			conn.close();
 			
 		}catch (SQLException se) {
 			se.printStackTrace();

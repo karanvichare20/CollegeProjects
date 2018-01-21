@@ -45,10 +45,7 @@ public class Employee {
 			role = result.get("role");
 			status = result.get("status");
 		}
-		
-//		System.out.println(empId+"\t"+firstName+"\t"+lastName+"\t"+email+"\t"+password+"\t"
-//							+phone+"\t"+street+"\t"+city+"\t"+pincode+"\t"+role+"\t"+status);
-		
+			
 	}
 	
 	public int getEmpId() {
