@@ -11,9 +11,9 @@ public class Admin {
 	public void adminMenu() {
 		
 		try {
-			System.out.println("-----Admin Main Menu-----\n");
-	        System.out.print("For vehicle maintenance press V\nFor employee maintenance press E\nFor trip management press T\nFor overview report press O\nTo logout press L");
-	        System.out.print("\nEnter selection: ");
+			System.out.println("\nWelcome Admin!");
+	        System.out.print("\nFor vehicle maintenance press 'V'\nFor employee maintenance press 'E'\nFor trip management press 'T'\nFor overview report press 'O'\nTo logout press 'L'");
+	        System.out.print("\n-->Enter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
 	        	if(select.equalsIgnoreCase("V")) {

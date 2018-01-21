@@ -173,13 +173,13 @@ public class TripManagement {
 	public void bookRide(Employee emp) {
 		
 		if(emp.getStatus().equals("inactive")) {
-			System.out.println("Employee is inactive");
+			System.out.print("\nEmployee is inactive");
 			return;
 		}
 		
 		empId = emp.getEmpId();
 		if(TripManagementDB.checkActiveBookingInDB(empId)) {
-			System.out.println("You already have an existing active booking or an ongoing trip. Cancel or Complete it to book a new trip.");
+			System.out.println("\nYou already have an existing active booking or an ongoing trip. Cancel or Complete it to book a new trip.");
 			return;
 		}
 		
@@ -205,11 +205,11 @@ public class TripManagement {
 		Vehicle assignedVehicle = new Vehicle(vehId);
 		
 		try {
-			System.out.println("\nAvailable vehicle is: "+assignedVehicle.getBrand()+" "+assignedVehicle.getModel());
+			System.out.println("\nAvailable vehicle is:- "+assignedVehicle.getBrand()+" "+assignedVehicle.getModel());
 			//System.out.print(assignedVehicle.getBrand()+" "+assignedVehicle.getModel());
 			
 			System.out.println("\nTo confirm press 'Y'\nTo go back press 'B'");
-			System.out.print("Enter selection: ");
+			System.out.print("-->Enter selection: ");
 			String confirm = reader.readLine();
 			
 			while(true) {
@@ -234,7 +234,7 @@ public class TripManagement {
 					return;
 				}else {
 					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.print("-->Enter your selection: ");
 					confirm = reader.readLine();
 				}
 			}	
@@ -332,7 +332,7 @@ public class TripManagement {
 		
 		System.out.println("For individual travel press 'B'\nFor goods transport press 'T'");
 		try {
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			entry = reader.readLine();
 			while(!entry.matches("B|T|b|t")) {
 				System.out.println("Invalid entry, enter again:");
@@ -348,7 +348,7 @@ public class TripManagement {
 	
 	public void printAssignedVehicleDetails(Vehicle veh) {
 		
-		System.out.print("\n-->Details of the vehicle assigned to you: ");
+		System.out.println("\n==>Details of the vehicle assigned to you:- ");
 		System.out.println("Brand: "+veh.getBrand());
 		System.out.println("Model: "+veh.getModel());
 		System.out.println("Registration Number: "+veh.getRegNo());
@@ -366,7 +366,7 @@ public class TripManagement {
 		HashMap<String, String> record = TripManagementDB.getTripRecordFromDB(emp.getEmpId(), "booked");
 		
 		if(record.isEmpty()) {
-			System.out.println("\nThere are no vehicles booked in your name or your last trip hasn't ended yet. Please end your ongoing trip and/or book a new trip.");
+			System.out.println("\nEither there is no vehicle booking done on your name or your last trip hasn't ended yet. In such cases, please book a new trip or end your ongoing trip.");
 			return;
 		}
 		
@@ -378,7 +378,7 @@ public class TripManagement {
 		
 		try {
 			
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -391,9 +391,9 @@ public class TripManagement {
 					
 					if(success) {
 						VehicleRecordsDB.updateColumnValueInDB(vehId, "curr_pin", pickPin);
-						System.out.println("\nyour trip has been started.");
+						System.out.print("\nYour trip has been started.");
 					}else {
-						System.out.println("\nyour trip could not be started due to technical error. Try again later.");
+						System.out.print("\nYour trip could not be started due to technical error. Try again later.");
 					}
 					
 					break;
@@ -402,7 +402,7 @@ public class TripManagement {
 					return;
 				}else {
 					System.out.println("\nInvalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}
@@ -417,7 +417,7 @@ public class TripManagement {
 		HashMap<String, String> record = TripManagementDB.getTripRecordFromDB(emp.getEmpId(), "enroute");
 		
 		if(record.isEmpty()) {
-			System.out.println("You have no ongoing rides in your name.");
+			System.out.print("\nYou have no ongoing rides in your name.\n");
 			return;
 		}
 		
@@ -425,11 +425,11 @@ public class TripManagement {
 		vehId = Integer.parseInt(record.get("veh_id"));
 		dropPin = record.get("drop_pin");
 				
-		System.out.println("Your trip with booking ID: "+tripId+" is ongoing.\nTo end this trip press'E' \nTo go back to previous menu press 'B'");
+		System.out.println("\nYour trip with booking ID: "+tripId+" is ongoing.\nTo end this trip press'E' \nTo go back to previous menu press 'B'");
 		
 		try {
 			
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -447,13 +447,13 @@ public class TripManagement {
 						
 						boolean vSuccess = VehicleRecordsDB.updateTripEndDetailsInDB(vehId, "available", dropPin, distance, tripCost);
 						if(vSuccess) {
-							System.out.println("your trip has been ended.");
-							System.out.println("your trip cost is: EUR "+tripCost);
+							System.out.print("\nYour trip has been ended.");
+							System.out.println("Your total trip cost is: EUR "+tripCost);
 						}else {
-							System.out.println("your trip could not be ended due to technical error with vehicle data. Try again later.");
+							System.out.println("\nyour trip could not be ended due to technical error with vehicle data. Try again later.");
 						}
 					}else {
-						System.out.println("your trip could not be ended due to technical error with trip data. Try again later.");
+						System.out.println("\nyour trip could not be ended due to technical error with trip data. Try again later.");
 					}
 
 					break;
@@ -461,8 +461,8 @@ public class TripManagement {
 				}else if (select.equalsIgnoreCase("B")) {
 					return;
 				}else {
-					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.print("\nInvalid input. Try again.");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}
@@ -478,7 +478,7 @@ public class TripManagement {
 			System.out.print("\nEnter distance travelled in kilometers xxx.xx format: ");
 			distance = Double.parseDouble(reader.readLine());
 			
-			System.out.print("\nEnter fuel price for the day in xx.xx price/ltr format: ");
+			System.out.print("Enter fuel price for the day in xx.xx EUR/ltr format: ");
 			double fuelPrice = Double.parseDouble(reader.readLine());
 			
 			Vehicle veh = new Vehicle(vehId);
@@ -498,18 +498,18 @@ public class TripManagement {
 		HashMap<String, String> record = TripManagementDB.getTripRecordFromDB(emp.getEmpId(), "booked");
 		
 		if(record.isEmpty()) {
-			System.out.println("There are no vehicles booked in your name or you have an ongoing trip.\nP.N: Ongoing trip cannot be cancelled. Please end the trip");
+			System.out.println("\nEither there is no vehicle booking done on your name or you have an ongoing trip.\nP.N: Ongoing trip cannot be cancelled. Please end the trip in such case.");
 			return;
 		}
 		
 		tripId = Integer.parseInt(record.get("trip_id"));
 		vehId = Integer.parseInt(record.get("veh_id"));
 		
-		System.out.println("You have an active booking with booking ID: "+tripId+".\nTo cancel this trip press 'C' \tTo go back to previous menu press 'B'");
+		System.out.println("\nYou have an active booking with booking ID: "+tripId+".\nTo cancel this trip press 'C' \nTo go back to previous menu press 'B'");
 		
 		try {
 			
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -519,9 +519,9 @@ public class TripManagement {
 					boolean success = TripManagementDB.updateTripStatusInDB(this, "cancelled");
 					if(success) {
 						VehicleRecordsDB.updateColumnValueInDB(vehId, "status", "available");
-						System.out.println("your trip has been cancelled.");
+						System.out.println("\nYour trip has been cancelled successfully.");
 					}else {
-						System.out.println("your trip could not be cancelled due to technical error. Try again later.");
+						System.out.println("\nYour trip could not be cancelled due to technical error. Try again later.");
 					}
 					
 					break;
@@ -529,8 +529,8 @@ public class TripManagement {
 				}else if (select.equalsIgnoreCase("B")) {
 					return;
 				}else {
-					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.println("\nInvalid input. Try again.");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}
@@ -542,28 +542,28 @@ public class TripManagement {
 	
 	public void displayTripHistoryForVehicle(){
 		
-		System.out.println("Enter vehicle id: ");
+		System.out.print("\nEnter vehicle id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 4 digit Vehicle ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
 //	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
 	        		if(veh.getVehId() == 0){
-	        			System.out.println("There is no record of the vehicle in the database.");
-	        			System.out.println("Enter vehicle id again: ");
+	        			System.out.println("\nThere is no record of the vehicle in the database.");
+	        			System.out.print("\nEnter vehicle id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else{
 	        			ArrayList<HashMap<String, String>> tripList = TripManagementDB.listTripHistoryForVehicle(veh.getVehId());
-	        			Iterator<HashMap<String, String>> iterator = tripList.iterator();
+	        			//Iterator<HashMap<String, String>> iterator = tripList.iterator();
 	        			
-	        			while(iterator.hasNext()) {
+	        			/*while(iterator.hasNext()) {
 	        				System.out.println(iterator.next());
-	        			}
+	        			}*/
 	        			
 	        			if(!tripList.isEmpty()) {
 	        				OverviewReports.displayTripHistoryForVehicle(tripList, veh.getVehId());
@@ -582,27 +582,27 @@ public class TripManagement {
 	
 	public void displayTripRecordsOfEmployee(){
 		
-		System.out.println("Enter employee id: ");
+		System.out.print("\nEnter employee id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 5 digit Employee ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		Employee emp = new Employee(Integer.parseInt(select));
 	        		if(emp.getEmpId() == 0){
-	        			System.out.println("There is no record of the employee in the database.");
-	        			System.out.println("Enter employee id again: ");
+	        			System.out.println("\nThere is no record of the employee in the database.");
+	        			System.out.print("\nEnter employee id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else{
 	        			ArrayList<HashMap<String, String>> tripList = TripManagementDB.listTripRecordsOfEmployee(emp.getEmpId());
-	        			Iterator<HashMap<String, String>> iterator = tripList.iterator();
+	        			//Iterator<HashMap<String, String>> iterator = tripList.iterator();
 	        			
-	        			while(iterator.hasNext()) {
+	        			/*while(iterator.hasNext()) {
 	        				System.out.println(iterator.next());
-	        			}
+	        			}*/
 	        			
 	        			if(!tripList.isEmpty()) {
 	        				OverviewReports.displayTripRecordsOfEmployee(tripList, emp.getEmpId());

@@ -114,7 +114,7 @@ public class Employee {
 		
 		try {
 			
-			System.out.println("Add a new employee");
+			System.out.println("\nAdding a new employee");
 			
 //			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("Enter firstName: ");
@@ -148,7 +148,7 @@ public class Employee {
 					+firstName+"','"+lastName+"','"+email+"','"+password+"','"+phone+"','"+street+"','"+city+"','"+pincode+"','"+role+"');";
 	        
 	        empId = EmployeeDB.addEmployeeToDB(sql);
-	        System.out.println("New employee added successfully. Employee ID is: "+empId);
+	        System.out.println("\nNew employee added successfully. Employee ID is: "+empId);
 	        
 		} catch (IOException ioe) {
 	        ioe.printStackTrace();
@@ -165,7 +165,7 @@ public class Employee {
 	public void reactivateEmployee() {
 		
 		boolean success = EmployeeDB.reactivateEmployeeInDB(empId);
-		System.out.println("Employee with ID "+empId+" re-activated successfully: "+success);
+		System.out.print("\nEmployee with ID "+empId+" re-activated successfully: "+success);
 		
 	}
 	
@@ -173,10 +173,10 @@ public class Employee {
 		
 		try {
 			
-			System.out.println("\nWelcome "+firstName+" "+lastName+"!\n");
-			System.out.println("To book a ride press 'B'\nTo start a booked trip press 'S'\nTo end your ongoing trip press 'E'\n"
+			System.out.println("\nWelcome "+firstName+" "+lastName+"!");
+			System.out.print("\nTo book a ride press 'B'\nTo start a booked trip press 'S'\nTo end your ongoing trip press 'E'\n"
 					+ "To cancel an existing booking press 'C'\nTo logout press 'L'");
-			System.out.print("Enter your selection: ");
+			System.out.print("\n-->Enter your selection: ");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -194,11 +194,11 @@ public class Employee {
 					cancelRide();
 					break;
 				}else if (select.equalsIgnoreCase("L")) {
-					System.out.println("You have been successfully logged out");
+					System.out.println("\nYou have been successfully logged out");
 					break;
 				}else {
 					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.print("\n-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}
@@ -242,11 +242,11 @@ public class Employee {
 	
 	public void goBackToMainMenu() {
 		
-		System.out.println("To go back to main menu press 'M'\nTo logout press 'L'");
+		System.out.println("\nTo go back to main menu press 'M'\nTo logout press 'L'");
 		
 		try {
 			
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -255,11 +255,11 @@ public class Employee {
 					employeeMenu();
 					break;
 				}else if (select.equalsIgnoreCase("L")) {
-					System.out.println("You have been successfully logged out");
+					System.out.print("\nYou have been successfully logged out");
 					break;
 				}else {
 					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}

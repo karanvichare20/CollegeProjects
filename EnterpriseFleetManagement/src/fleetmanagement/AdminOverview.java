@@ -15,11 +15,11 @@ public class AdminOverview {
 		MaintenanceTracker maint = new MaintenanceTracker();
 		
 		try {
-			System.out.println("-----Admin Overview Menu-----\n");
-	        System.out.print("To see all available vehicles press A\nTo see status of all vehicles press S\nTo see vehicle's running stats press V"
-	        		+ "\nTo see a vehicle's trip history press T\nTo see a vehicle's repair and maintenance history press R"
-	        		+ "\nTo see an employee's trip records press E\nTo go main menu press M");
-	        System.out.print("\nEnter selection: ");
+			System.out.println("\n-----Admin Overview Menu-----\n");
+	        System.out.println("To see all available vehicles press 'A'\nTo see status of all vehicles press 'S'\nTo see vehicle's running stats press 'V'"
+	        		+ "\nTo see a vehicle's trip history press 'T'\nTo see a vehicle's repair and maintenance history press 'R'"
+	        		+ "\nTo see an employee's trip records press 'E'\nTo go main menu press 'M'");
+	        System.out.print("-->Enter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
 	        	if(select.equalsIgnoreCase("A")) {
@@ -45,8 +45,8 @@ public class AdminOverview {
 	        		admin.adminMenu();
 	        		return;
 	        	}else {
-	        		System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+	        		System.out.println("\nInvalid input. Try again.");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 	        	}
 	        }
@@ -60,11 +60,11 @@ public class AdminOverview {
 	
 	public void goBackToPreviousMenu() {
 		
-		System.out.println("To go back to previous menu press 'B'\nTo logout press 'L'");
+		System.out.println("\nTo go back to previous menu press 'B'\nTo logout press 'L'");
 		
 		try {
 			
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -73,11 +73,11 @@ public class AdminOverview {
 					adminOverview();
 					break;
 				}else if (select.equalsIgnoreCase("L")) {
-					System.out.println("You have been successfully logged out");
+					System.out.print("\nYou have been successfully logged out");
 					break;
 				}else {
-					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.println("\nInvalid input. Try again.");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}

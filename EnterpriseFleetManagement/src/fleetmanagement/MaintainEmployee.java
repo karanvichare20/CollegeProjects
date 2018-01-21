@@ -12,8 +12,8 @@ public class MaintainEmployee {
 		
 		try {
 	        
-	        System.out.print("To add a new employee press A\nTo get details of an employee press G\nTo update an employee record press U\nTo de-activate an employee press D\nTo re-activate an employee press R\nTo go back to main menu press M");
-	        System.out.print("\nEnter selection: ");
+	        System.out.print("\nTo add a new employee press 'A'\nTo get details of an employee press 'G'\nTo update an employee record press 'U'\nTo de-activate an employee press 'D'\nTo re-activate an employee press 'R'\nTo go back to main menu press 'M'");
+	        System.out.print("\n-->Enter selection: ");
 	        String select = reader.readLine();
 	        while(true) {
 	        	if(select.equalsIgnoreCase("A")) {
@@ -56,18 +56,18 @@ public class MaintainEmployee {
 	
 	public void getEmployeeDetails() {
 		
-		System.out.println("Enter employee id: ");
+		System.out.print("\nEnter employee id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 5 digit Employee ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		Employee emp = new Employee(Integer.parseInt(select));
 	        		if(emp.getEmpId() == 0){
-	        			System.out.println("There is no record of the employee in the database.");
-	        			System.out.println("Enter employee id again: ");
+	        			System.out.print("\nThere is no record of the employee in the database.");
+	        			System.out.print("\nEnter employee id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else{
@@ -91,22 +91,22 @@ public class MaintainEmployee {
 	
 	public void deactivateEmployee() {
 		
-		System.out.println("Enter employee id: ");
+		System.out.print("\nEnter employee id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 5 digit Employee ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		Employee emp = new Employee(Integer.parseInt(select));
 	        		if(emp.getEmpId() == 0){
-	        			System.out.println("There is no record of the employee in the database.");
-	        			System.out.println("Enter employee id again: ");
+	        			System.out.print("\nThere is no record of the employee in the database.");
+	        			System.out.print("\nEnter employee id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else if(emp.getStatus().equals("inactive")){
-	        			System.out.println("The employee is already inactive.");
+	        			System.out.print("\nThe employee is already inactive.");
 	        		}else{
 	        			emp.deactivateEmployee();
 	        		}
@@ -122,22 +122,22 @@ public class MaintainEmployee {
 	
 	public void reactivateEmployee() {
 		
-		System.out.println("Enter employee id: ");
+		System.out.print("\nEnter employee id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 5 digit Employee ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 5 digit Employee ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		Employee emp = new Employee(Integer.parseInt(select));
 	        		if(emp.getEmpId() == 0){
-	        			System.out.println("There is no record of the employee in the database.");
-	        			System.out.println("Enter employee id again: ");
+	        			System.out.print("\nThere is no record of the employee in the database.");
+	        			System.out.print("\nEnter employee id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else if(emp.getStatus().equals("active")){
-	        			System.out.println("The employee is already active.");
+	        			System.out.println("\nThe employee is already active.");
 	        		}else{
 	        			emp.reactivateEmployee();
 	        		}
@@ -153,11 +153,11 @@ public class MaintainEmployee {
 	
 	public void goBackToPreviousMenu() {
 		
-		System.out.println("To go back to previous menu press 'B'\nTo logout press 'L'");
+		System.out.println("\nTo go back to previous menu press 'B'\nTo logout press 'L'");
 		
 		try {
 			
-			System.out.print("Enter selection:");
+			System.out.print("-->Enter selection:");
 			String select = reader.readLine();
 			
 			while(true) {
@@ -166,11 +166,11 @@ public class MaintainEmployee {
 					maintainEmployee();
 					break;
 				}else if (select.equalsIgnoreCase("L")) {
-					System.out.println("You have been successfully logged out");
+					System.out.println("\nYou have been successfully logged out");
 					break;
 				}else {
-					System.out.println("Invalid input. Try again.");
-					System.out.print("Enter your selection: ");
+					System.out.println("\nInvalid input. Try again.");
+					System.out.print("-->Enter your selection: ");
 					select = reader.readLine();
 				}
 			}

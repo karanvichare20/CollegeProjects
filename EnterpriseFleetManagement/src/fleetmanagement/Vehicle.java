@@ -94,7 +94,7 @@ public class Vehicle {
 		
 		try {
 			
-			System.out.println("Add a new vehicle");
+			System.out.println("\nAdding a new vehicle record");
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("Enter vehicle model: ");
@@ -122,7 +122,7 @@ public class Vehicle {
 					+model+"','"+brand+"','"+regNo+"',"+year+","+pax+",'"+category+"',"+mileage+");";
 	        
 	        vehId = VehicleDB.addVehicleToDB(sql);
-	        System.out.println("New vehicle added successfully. Vehicle ID is: "+vehId);
+	        System.out.println("New vehicle has been added successfully. Vehicle ID is: "+vehId);
 	        
 		} catch (IOException ioe) {
 	        ioe.printStackTrace();

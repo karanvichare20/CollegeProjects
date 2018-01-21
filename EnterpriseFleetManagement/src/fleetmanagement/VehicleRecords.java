@@ -75,11 +75,11 @@ public class VehicleRecords {
 	public void displayAllAvailableVehicles(){
 		
 		ArrayList<HashMap<String, String>> vehList = VehicleRecordsDB.listAllAvailableVehiclesDB();
-		Iterator<HashMap<String, String>> iterator = vehList.iterator();
+		//Iterator<HashMap<String, String>> iterator = vehList.iterator();
 		
-		while(iterator.hasNext()) {
+		/*while(iterator.hasNext()) {
 			System.out.println(iterator.next());
-		}
+		}*/
 		
 		if(!vehList.isEmpty()) {
 			OverviewReports.displayAllAvailableVehicles(vehList);
@@ -92,11 +92,11 @@ public class VehicleRecords {
 	public void displayStatusOfAllVehicles(){
 		
 		ArrayList<HashMap<String, String>> vehList = VehicleRecordsDB.listStatusOfAllVehiclesDB();
-		Iterator<HashMap<String, String>> iterator = vehList.iterator();
+		//Iterator<HashMap<String, String>> iterator = vehList.iterator();
 		
-		while(iterator.hasNext()) {
+		/*while(iterator.hasNext()) {
 			System.out.println(iterator.next());
-		}
+		}*/
 		
 		if(!vehList.isEmpty()) {
 			OverviewReports.displayStatusOfAllVehicles(vehList);
@@ -111,23 +111,23 @@ public class VehicleRecords {
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		HashMap<String, String> statList = new HashMap<String, String>();
 		
-		System.out.println("Enter vehicle id: ");
+		System.out.print("\nEnter vehicle id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 4 digit Vehicle ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
 	        		if(vehRec.getVehId() == 0){
-	        			System.out.println("There is no record of the vehicle in the database.");
-	        			System.out.println("Enter vehicle id again: ");
+	        			System.out.print("\nThere is no record of the vehicle in the database.");
+	        			System.out.print("\nEnter vehicle id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else{
 	        			statList.put("miles", ""+vehRec.getMiles());
-	        			System.out.println("Total kilometers run: "+vehRec.getMiles());
+	        			System.out.println("\nTotal kilometers run: "+vehRec.getMiles());
 	        			
 	        			statList.put("fuelcost", ""+vehRec.getFuelCost());
 	        			System.out.println("Total fuel cost till date: "+vehRec.getFuelCost());

@@ -80,28 +80,28 @@ public class MaintenanceTracker {
 	
 	public void displayMaintHistoryForVehicle(){
 		
-		System.out.println("Enter vehicle id: ");
+		System.out.print("\nEnter vehicle id: ");
 		try {
 			String select = reader.readLine();
 	        while(true) {
 	        	if(!select.matches("-?\\d+")) {
-	        		System.out.print("Invalid entry. Please enter correct 4 digit Vehicle ID:");
+	        		System.out.print("\nInvalid entry. Please enter correct 4 digit Vehicle ID:");
 	        		select = reader.readLine();
 	        	}else {
 	        		Vehicle veh = new Vehicle(Integer.parseInt(select));
 //	        		VehicleRecords vehRec = new VehicleRecords(Integer.parseInt(select));
 	        		if(veh.getVehId() == 0){
-	        			System.out.println("There is no record of the vehicle in the database.");
-	        			System.out.println("Enter vehicle id again: ");
+	        			System.out.println("\nThere is no record of the vehicle in the database.");
+	        			System.out.print("\nEnter vehicle id again: ");
 	        			select = reader.readLine();
 	        			continue;
 	        		}else{
 	        			ArrayList<HashMap<String, String>> maintList = MaintenanceTrackerDB.listMaintHistoryForVehicle(veh.getVehId());
-	        			Iterator<HashMap<String, String>> iterator = maintList.iterator();
+	        			//Iterator<HashMap<String, String>> iterator = maintList.iterator();
 	        			
-	        			while(iterator.hasNext()) {
+	        			/*while(iterator.hasNext()) {
 	        				System.out.println(iterator.next());
-	        			}
+	        			}*/
 	        			
 	        			if(!maintList.isEmpty()) {
 	        				OverviewReports.displayMaintHistoryForVehicle(maintList, veh.getVehId());

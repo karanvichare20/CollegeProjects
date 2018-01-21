@@ -8,7 +8,7 @@ public class FleetManagementSystem {
 
 	public static void main(String[] args) {
 		
-		//Start of application
+		//Start of application- Main Menu
 		ApplicationLogin login = new ApplicationLogin();
 		System.out.print("\n");
 		System.out.println("<----------------------------------------------------------------------------------ENTERPRISE FLEET MANAGEMENT SYSTEM---------------------------------------------------------------------------------->\n");
