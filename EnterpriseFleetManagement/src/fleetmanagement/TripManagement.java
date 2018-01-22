@@ -330,7 +330,7 @@ public class TripManagement {
 		
 		String entry = "T";
 		
-		System.out.println("For individual travel press 'B'\nFor goods transport press 'T'");
+		System.out.print("/nFor individual travel press 'B'\nFor goods transport press 'T'");
 		try {
 			System.out.print("-->Enter selection:");
 			entry = reader.readLine();
