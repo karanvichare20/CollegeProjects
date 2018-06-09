@@ -6,7 +6,7 @@
         Loaded="Window_Loaded"
         xmlns:local="clr-namespace:MyLibrary"
         mc:Ignorable="d"
-        Title="Add Book" Height="500" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Add Book" Height="500" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
     <Grid Name="g_add_book" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Row="1">
         <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="558" FontWeight="Bold" FontSize="16" Foreground="#FF239DCB">
             <Run Text="Add a new book"/>

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:MyLibrary"
         Loaded="Window_Loaded"
         mc:Ignorable="d"
-        Title="Borrow" Height="500" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Borrow" Height="500" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
     <Grid Name="g_borrow_details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Row="1">
         <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="558" FontWeight="Bold" FontSize="16" Foreground="#FF239DCB">
             <Run Text="Borrowing details"/>
