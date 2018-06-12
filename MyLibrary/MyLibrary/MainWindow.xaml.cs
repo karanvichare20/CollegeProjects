@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MyLibrary
 {
@@ -23,6 +13,19 @@ namespace MyLibrary
     {
         public static ObservableCollection<Book> books;
         public static ObservableCollection<Friend> friends;
+
+
+        public int availableCount
+        {
+            get { return (int)GetValue(availableCountProperty); }
+            set { SetValue(availableCountProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for availableCount.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty availableCountProperty =
+            DependencyProperty.Register("availableCount", typeof(int), typeof(MainWindow), new PropertyMetadata(0));
+
+
 
         public MainWindow()
         {
@@ -52,19 +55,30 @@ namespace MyLibrary
 
             LBx_book.ItemsSource = books;
             LBx_friend.ItemsSource = friends;
+            TBk_bookCount.DataContext = this;
 
+            foreach (Book element in books)
+            {
+                if (element.isAvailable == "Yes")
+                    availableCount++;
+            }
+            
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            MyStorage.WriteXML<ObservableCollection<Book>>("books.xml", books);
+            MyStorage.WriteXML<ObservableCollection<Friend>>("friends.xml", friends);
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------BOOKS-------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------------------
 
         private void TBx_filter_book_TextChanged(object sender, TextChangedEventArgs e)
         {
             var bList = from b in books where b.title.ToLower().Contains(TBx_book_filter.Text.ToLower()) select b;
             LBx_book.ItemsSource = bList;
-        }
-
-        private void TBx_filter_friend_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var fList = from f in friends where f.firstName.ToLower().Contains(TBx_friend_filter.Text.ToLower()) select f;
-            LBx_friend.ItemsSource = fList;
         }
 
         private void Btn_add_book_Click(object sender, RoutedEventArgs e)
@@ -83,12 +97,7 @@ namespace MyLibrary
             }
 
             books.Remove(LBx_book.SelectedItem as Book);
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            MyStorage.WriteXML<ObservableCollection<Book>>("books.xml", books);
-            MyStorage.WriteXML<ObservableCollection<Friend>>("friends.xml", friends);
+            availableCount--;
         }
 
         private void Btn_borrow_book_Click(object sender, RoutedEventArgs e)
@@ -133,6 +142,7 @@ namespace MyLibrary
                 book.borrowDate = null;
                 book.returnDate = null;
                 book.contact = null;
+                availableCount++;
 
                 MessageBox.Show("The book is now returned...");
                 return;
@@ -140,6 +150,23 @@ namespace MyLibrary
 
             MessageBox.Show("The book is already returned...");
 
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------FRIENDS-----------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------------------
+
+        private void TBx_filter_friend_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var fList = from f in friends where f.firstName.ToLower().Contains(TBx_friend_filter.Text.ToLower()) select f;
+            LBx_friend.ItemsSource = fList;
+        }
+
+        private void Btn_add_friend_Click(object sender, RoutedEventArgs e)
+        {
+            AddFriend addFriendWin = new AddFriend();
+            addFriendWin.Owner = this;
+            addFriendWin.Show();
         }
 
         private void Btn_remove_friend_Click(object sender, RoutedEventArgs e)
@@ -153,11 +180,6 @@ namespace MyLibrary
             friends.Remove(LBx_friend.SelectedItem as Friend);
         }
 
-        private void Btn_add_friend_Click(object sender, RoutedEventArgs e)
-        {
-            AddFriend addFriendWin = new AddFriend();
-            addFriendWin.Owner = this;
-            addFriendWin.Show();
-        }
+        
     }
 }

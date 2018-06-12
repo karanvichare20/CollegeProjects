@@ -7,15 +7,15 @@
         Closed="Window_Closed"
         xmlns:local="clr-namespace:MyLibrary"
         mc:Ignorable="d"
-        Title="My Personal Library" Height="600" Width="840" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="My Personal Library" Icon="library.ico" Height="600" Width="840" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Window.Resources>
         <local:VisibilityConverter x:Key="VisibilityConverter" />
         <local:IsbnToTitleConverter x:Key="IsbnToTitleConverter" />
-        <!--<local:ImageConverter x:Key="ImageConverter" />-->
     </Window.Resources>
+    
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="580" VerticalAlignment="Top" Width="822" Margin="10,10,0,-21">
-            <TabItem Header="Books" Width="100">
+            <TabItem Header="Books" Width="150">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="22*"/>
@@ -28,42 +28,51 @@
                         <RowDefinition Height="48*"/>
                         <RowDefinition Height="521*"/>
                     </Grid.RowDefinitions>
+                    
                     <TextBlock TextWrapping="Wrap" Text="List of books" VerticalAlignment="Top" Margin="15,22,0,0" Height="26" FontSize="16" HorizontalAlignment="Left" Width="99" Foreground="#FF239DCB" FontWeight="Bold" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
                     <StackPanel HorizontalAlignment="Left" Height="371" VerticalAlignment="Top" Width="200" Margin="15,35,0,0" Grid.Row="1" Grid.ColumnSpan="5">
                         <TextBlock TextWrapping="Wrap" Text="Enter text to filter titles"/>
                         <TextBox x:Name="TBx_book_filter" Height="23" TextWrapping="Wrap" TextChanged="TBx_filter_book_TextChanged"/>
                         <ListBox x:Name="LBx_book" Margin="0,10,0,10" DisplayMemberPath="title" SelectedIndex="0" MaxHeight="300"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Left" Width="200" Margin="15,411,0,74" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.ColumnSpan="5">
-                        <Button Name="Btn_remove_book" Content="Remove" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_remove_book_Click"/>
-                        <Button x:Name="Btn_add_book" Content="Add" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_add_book_Click"/>
+                    
+                    <StackPanel Grid.ColumnSpan="5" Margin="15,411,601,44" Orientation="Vertical" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextWrapping="Wrap" Text="Total available books:"/>
+                            <TextBlock x:Name="TBk_bookCount" TextWrapping="Wrap" Margin="10,0,0,0" FontWeight="Bold">
+                                <Run Text="{Binding availableCount}"/>
+                                <Run Text="/"/>
+                                <Run Text="{Binding ElementName=LBx_book, Path=Items.Count, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" HorizontalAlignment="Left" Width="200" Orientation="Horizontal" FlowDirection="RightToLeft" Height="20">
+                            <Button x:Name="Btn_remove_book" Content="Remove" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_remove_book_Click"/>
+                            <Button x:Name="Btn_add_book" Content="Add" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_add_book_Click"/>
+                        </StackPanel>
                     </StackPanel>
 
                     <Grid Name="g_details_book" DataContext="{Binding ElementName=LBx_book, Path=SelectedItem}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="52,10,10,10" Grid.Row="1" Grid.Column="4">
+                        
                         <TextBlock Height="50" TextWrapping="Wrap" VerticalAlignment="Top">
                             <Run Text="{Binding title}" Foreground="#FF239DCB" FontWeight="Bold" FontSize="16"/>
                             <LineBreak/>
                             <Run Text="by " FontSize="12"/>
-                            <Run Text="{Binding author.firstName}" FontWeight="Bold" FontSize="12" FontStyle="Italic"/>
-                            <Run Text="{Binding author.lastName}" FontWeight="Bold" FontSize="12" FontStyle="Italic"/>
+                            <Run Text="{Binding author}" FontWeight="Bold" FontSize="12" FontStyle="Italic"/>
                         </TextBlock>
                         <Image x:Name="book_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="322,26,10,165" />
-                        <!--<Image x:Name="book_image" Source="{Binding image, Converter={StaticResource ImageConverter}, Mode=OneWay}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="322,26,10,165" />-->
                         <StackPanel Margin="300,403,70,62" Orientation="Horizontal" FlowDirection="RightToLeft">
                             <Button Content="Return" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_return_book_Click"/>
                             <Button Content="Borrow" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_borrow_book_Click"/>
                         </StackPanel>
+                        
                         <StackPanel Margin="0,50,253,0" Orientation="Vertical">
                             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                                 <TextBlock Text="Title:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                 <TextBlock Text="{Binding title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                             </StackPanel>
                             <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
-                                <TextBlock Text="Author:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
-                                    <Run Text="{Binding author.firstName}"/>
-                                    <Run Text="{Binding author.lastName}"/>
-                                </TextBlock>
+                                <TextBlock Text="Author(s):" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding author}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                             </StackPanel>
                             <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
                                 <TextBlock Text="ISBN:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -101,14 +110,17 @@
 
                         </StackPanel>
                     </Grid>
+                    
                 </Grid>
             </TabItem>
-            <TabItem Header="Friends" Width="100">
+
+            <TabItem Header="Friends" Width="150">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48*"/>
                         <RowDefinition Height="521*"/>
                     </Grid.RowDefinitions>
+                    
                     <TextBlock TextWrapping="Wrap" Text="List of friends" VerticalAlignment="Top" Margin="15,22,0,0" Height="26" FontSize="16" HorizontalAlignment="Left" Width="132" Foreground="#FF239DCB" FontWeight="Bold" Grid.RowSpan="2"/>
                     <StackPanel HorizontalAlignment="Left" Height="371" VerticalAlignment="Top" Width="200" Margin="15,35,0,0" Grid.Row="1">
                         <TextBlock TextWrapping="Wrap" Text="Enter text to filter names"/>
@@ -128,9 +140,16 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="15,411,0,0" Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.ColumnSpan="4">
-                        <Button Name="Btn_remove_friend" Content="Remove" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_remove_friend_Click"/>
-                        <Button x:Name="Btn_add_friend" Content="Add" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_add_friend_Click"/>
+                    
+                    <StackPanel Margin="15,411,601,44" Orientation="Vertical" Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextWrapping="Wrap" Text="Total friends:"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding ElementName=LBx_friend, Path=Items.Count, Mode=OneWay}" Margin="10,0,0,0" FontWeight="Bold" Width="120"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Orientation="Horizontal" FlowDirection="RightToLeft">
+                            <Button x:Name="Btn_remove_friend" Content="Remove" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_remove_friend_Click"/>
+                            <Button x:Name="Btn_add_friend" Content="Add" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_add_friend_Click"/>
+                        </StackPanel>
                     </StackPanel>
 
                     <Grid Name="g_details_friend" DataContext="{Binding ElementName=LBx_friend, Path=SelectedItem}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="235,10,10,10" Grid.Row="1">
@@ -138,6 +157,7 @@
                             <Run Text="{Binding firstName}" Foreground="#FF239DCB"/>
                             <Run Text="{Binding lastName}" Foreground="#FF239DCB"/>
                         </TextBlock>
+                        
                         <StackPanel Margin="0,50,257,288" Orientation="Vertical">
                             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                                 <TextBlock Text="First Name: " Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -160,17 +180,18 @@
                                 <TextBlock Text="{Binding address}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="63"/>
                             </StackPanel>
                         </StackPanel>
-                        
+
                         <TextBlock Text="Currently borrowed: " Width="172" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Margin="3,202,0,0"/>
                         <ListView x:Name="LVw_booklist" ItemsSource="{Binding bookList, Converter={StaticResource IsbnToTitleConverter}, Mode=OneWay}" Width="200" HorizontalAlignment="Left" Margin="3,223,0,95"/>
                         <ListView x:Name="LVw_historylist" ItemsSource="{Binding history, Converter={StaticResource IsbnToTitleConverter}, Mode=OneWay}" Margin="282,223,89,95" Width="200"/>
                         <TextBlock Text="Previously borrowed: " Width="141" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="282,202,0,0" FontWeight="Bold"/>
+                        
                         <Image x:Name="friend_image" Source="{Binding image}" OpacityMask="#FFD63D3D" HorizontalAlignment="Left" Height="139" VerticalAlignment="Top" Width="163" Margin="319,15,0,0"/>
                     </Grid>
+                    
                 </Grid>
             </TabItem>
         </TabControl>
-
 
     </Grid>
 </Window>

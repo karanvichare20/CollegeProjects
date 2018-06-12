@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace MyLibrary
 {
@@ -17,5 +12,10 @@ namespace MyLibrary
         public string image { get; set; }
         public ObservableCollection<string> bookList { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> history { get; set; } = new ObservableCollection<string>();
+
+        public override string ToString()
+        {
+            return "";
+        }
     }
 }

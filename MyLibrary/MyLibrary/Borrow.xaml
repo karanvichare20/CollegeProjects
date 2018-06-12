@@ -7,24 +7,26 @@
         xmlns:local="clr-namespace:MyLibrary"
         Loaded="Window_Loaded"
         mc:Ignorable="d"
-        Title="Borrow" Height="500" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
+        Title="Borrow" Icon="library.ico" Height="500" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
     <Grid Name="g_borrow_details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Row="1">
+        
         <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="558" FontWeight="Bold" FontSize="16" Foreground="#FF239DCB">
             <Run Text="Borrowing details"/>
         </TextBlock>
+        
         <Grid x:Name="g_book_details" Margin="0,29,0,261">
             <Image x:Name="book_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="400,0,25,10" />
+            
             <StackPanel x:Name="SPx_book_details" Orientation="Vertical" Margin="0,0,260,0">
                 <TextBlock Text="Book details" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="291" FontWeight="Bold" FontSize="12"/>
+                
                 <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                     <TextBlock Text="Book Title:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBlock Text="{Binding title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="10,0,0,0"/>
                 </StackPanel>
                 <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock Text="Author:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="10,0,0,0">
-                        <Run Text="{Binding author.firstName}"/>
-                        <Run Text="{Binding author.lastName}"/></TextBlock>
+                    <TextBlock Text="Author(s):" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding author}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="10,0,0,0"/>
                 </StackPanel>
                 <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
                     <TextBlock Text="ISBN:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -39,11 +41,36 @@
                     <TextBox Text="{Binding days}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Margin="10,0,0,0"/>
                     <TextBlock Text="days" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                 </StackPanel>
+                
             </StackPanel>
+            
         </Grid>
-        <Grid x:Name="g_friend_detail" DataContext="{Binding ElementName=LBx_friend, Path=SelectedItem}" Margin="0,193,0,0">
+        
+        <Grid x:Name="g_friend_detail" DataContext="{Binding ElementName=CBx_friend, Path=SelectedItem}" Margin="0,193,0,0">
+            <Image x:Name="friend_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="400,10,25,103" />
+
             <StackPanel x:Name="SPx_friend_details" Orientation="Vertical" Margin="0,0,260,0">
-                <TextBlock Text="Friend details" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="12"/>
+                
+                <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Vertical">
+                    <TextBlock Text="Friend details" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="12"/>
+
+                    <TextBlock Text="Select a friend: " HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="299" FontSize="12"/>
+                    <ComboBox x:Name="CBx_friend" Width="200" HorizontalAlignment="Left" IsTextSearchEnabled="True" IsEditable="True" StaysOpenOnEdit="True" PreviewTextInput="CBx_friend_PreviewTextInput" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="firstName" />
+                                            <Binding Path="lastName" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+
                 <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
                     <TextBlock Text="First Name:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBlock Text="{Binding firstName}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="10,0,0,0"/>
@@ -64,30 +91,15 @@
                     <TextBlock Text="Address:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBlock Text="{Binding address}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="65" Margin="10,0,0,0"/>
                 </StackPanel>
+                
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="195" VerticalAlignment="Top" Width="200" Margin="348,0,0,0">
-                <TextBlock TextWrapping="Wrap" Text="Friends list" FontWeight="Bold"/>
-                <TextBlock TextWrapping="Wrap" Margin="0,5,0,0" Text="Enter text to filter names"/>
-                <TextBox x:Name="TBx_friend_filter" Height="23" TextWrapping="Wrap" TextChanged="TBx_filter_friend_TextChanged"/>
-                <ListBox x:Name="LBx_friend" Margin="0,10,0,10"  MaxHeight="150">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} {1}">
-                                        <Binding Path="firstName" />
-                                        <Binding Path="lastName" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
+            
             <StackPanel Margin="-10,209,0,0" VerticalAlignment="Top" Orientation="Horizontal" FlowDirection="RightToLeft">
                 <Button x:Name="Btn_close" Content="Cancel" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_close_Click"/>
                 <Button x:Name="Btn_save" Content="Okay" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_save_Click"/>
             </StackPanel>
+            
         </Grid>
+        
     </Grid>
 </Window>

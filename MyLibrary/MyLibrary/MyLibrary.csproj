@@ -84,10 +84,8 @@
     <Compile Include="Borrow.xaml.cs">
       <DependentUpon>Borrow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Author.cs" />
     <Compile Include="Classes\Book.cs" />
     <Compile Include="Classes\Friend.cs" />
-    <Compile Include="Classes\ImageConverter.cs" />
     <Compile Include="Classes\IsbnToTitleConverter.cs" />
     <Compile Include="Classes\MyStorage.cs" />
     <Compile Include="Classes\VisibilityConverter.cs" />
@@ -124,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="library.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
