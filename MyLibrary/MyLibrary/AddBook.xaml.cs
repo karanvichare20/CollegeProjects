@@ -1,7 +1,9 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace MyLibrary
 {
@@ -28,7 +30,13 @@ namespace MyLibrary
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
-                TBx_image_path.Text = System.IO.Path.GetFullPath(openFileDialog.FileName);
+            {
+                string path = System.IO.Path.GetFullPath(openFileDialog.FileName);
+                TBx_image_path.Text = path;
+                book.image = path;
+                book_image.Source = new BitmapImage(new Uri(path));
+            }
+                
         }
 
         private void Btn_save_book_Click(object sender, RoutedEventArgs e)

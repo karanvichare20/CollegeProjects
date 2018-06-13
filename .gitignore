@@ -7,3 +7,5 @@ MyLibrary/.vs/
 .vs/slnx.sqlite
 .vs/tasks.vs.json
 .vs/VSWorkspaceState.json
+MyLibrary/MyLibrary/MyLibrary.csproj.user
+MyLibrary/MyLibrary/MyLibrary_TemporaryKey.pfx

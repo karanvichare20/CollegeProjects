@@ -9,20 +9,20 @@
         mc:Ignorable="d"
         Title="Borrow" Icon="library.ico" Height="500" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
     <Grid Name="g_borrow_details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Row="1">
-        
+
         <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="558" FontWeight="Bold" FontSize="16" Foreground="#FF239DCB">
             <Run Text="Borrowing details"/>
         </TextBlock>
-        
-        <Grid x:Name="g_book_details" Margin="0,29,0,261">
-            <Image x:Name="book_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="400,0,25,10" />
-            
-            <StackPanel x:Name="SPx_book_details" Orientation="Vertical" Margin="0,0,260,0">
+
+        <Grid x:Name="g_book_details" Margin="0,29,0,265">
+            <Image x:Name="book_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="400,10,25,0" />
+
+            <StackPanel x:Name="SPx_book_details" Orientation="Vertical" Margin="0,0,179,0">
                 <TextBlock Text="Book details" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="291" FontWeight="Bold" FontSize="12"/>
-                
+
                 <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                     <TextBlock Text="Book Title:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="301" Margin="10,0,0,0"/>
                 </StackPanel>
                 <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
                     <TextBlock Text="Author(s):" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -36,21 +36,21 @@
                     <TextBlock Text="Current Date:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBlock Text="{Binding date, StringFormat=\{0:dddd\, MMMM dd\, yyyy\}}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Margin="10,0,0,0"/>
                 </StackPanel>
-                <StackPanel x:Name="SPx_count_days" Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal" Height="48">
+                <StackPanel x:Name="SPx_count_days" Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal" Height="55">
                     <TextBlock Text="Borrow for:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBox Text="{Binding days}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Margin="10,0,0,0"/>
                     <TextBlock Text="days" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,0,0,0"/>
                 </StackPanel>
-                
+
             </StackPanel>
-            
+
         </Grid>
-        
-        <Grid x:Name="g_friend_detail" DataContext="{Binding ElementName=CBx_friend, Path=SelectedItem}" Margin="0,193,0,0">
+
+        <Grid x:Name="g_friend_detail" DataContext="{Binding ElementName=CBx_friend, Path=SelectedItem}" Margin="0,191,0,-9" Height="269" VerticalAlignment="Top">
             <Image x:Name="friend_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="400,10,25,103" />
 
             <StackPanel x:Name="SPx_friend_details" Orientation="Vertical" Margin="0,0,260,0">
-                
+
                 <StackPanel Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Vertical">
                     <TextBlock Text="Friend details" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Top" Width="299" FontWeight="Bold" FontSize="12"/>
 
@@ -91,15 +91,15 @@
                     <TextBlock Text="Address:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                     <TextBlock Text="{Binding address}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="65" Margin="10,0,0,0"/>
                 </StackPanel>
-                
+
             </StackPanel>
-            
+
             <StackPanel Margin="-10,209,0,0" VerticalAlignment="Top" Orientation="Horizontal" FlowDirection="RightToLeft">
                 <Button x:Name="Btn_close" Content="Cancel" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_close_Click"/>
                 <Button x:Name="Btn_save" Content="Okay" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_save_Click"/>
             </StackPanel>
-            
+
         </Grid>
-        
+
     </Grid>
 </Window>

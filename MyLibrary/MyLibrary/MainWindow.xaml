@@ -53,19 +53,19 @@
 
                     <Grid Name="g_details_book" DataContext="{Binding ElementName=LBx_book, Path=SelectedItem}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="52,10,10,10" Grid.Row="1" Grid.Column="4">
                         
-                        <TextBlock Height="50" TextWrapping="Wrap" VerticalAlignment="Top">
+                        <TextBlock Height="69" TextWrapping="Wrap" VerticalAlignment="Top">
                             <Run Text="{Binding title}" Foreground="#FF239DCB" FontWeight="Bold" FontSize="16"/>
                             <LineBreak/>
                             <Run Text="by " FontSize="12"/>
                             <Run Text="{Binding author}" FontWeight="Bold" FontSize="12" FontStyle="Italic"/>
                         </TextBlock>
-                        <Image x:Name="book_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="322,26,10,165" />
+                        <Image x:Name="book_image" Source="{Binding image}" OpacityMask="#FFD63D3D" RenderTransformOrigin="5.8,-5.133" Margin="322,40,10,151" />
                         <StackPanel Margin="300,403,70,62" Orientation="Horizontal" FlowDirection="RightToLeft">
                             <Button Content="Return" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_return_book_Click"/>
                             <Button Content="Borrow" Width="55" Foreground="#FF239DCB" FontWeight="Bold" Margin="0,0,5,0" Click="Btn_borrow_book_Click"/>
                         </StackPanel>
                         
-                        <StackPanel Margin="0,50,253,0" Orientation="Vertical">
+                        <StackPanel Margin="0,69,253,0" Orientation="Vertical">
                             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                                 <TextBlock Text="Title:" Width="80" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                                 <TextBlock Text="{Binding title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
