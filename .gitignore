@@ -10,3 +10,4 @@ MyLibrary/.vs/
 MyLibrary/MyLibrary/MyLibrary.csproj.user
 MyLibrary/MyLibrary/MyLibrary_TemporaryKey.pfx
 MyLibraryApp/MyLibraryApp.sln
+*.apk
